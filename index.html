@@ -1,229 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>WRANDTEL</title>
-  <style>
-    body {
-      background-color: #2c3e50;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Courier New', monospace;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="The map is not the territory but the pattern is the path."
+        />
+        <meta
+            name="keywords"
+            content="Software Architecture, Construct Software, Software Engineering, Designing Software, Building Software, Maintaining Software, Software Development, Growing Software,"
+        />
+        <meta name="author" content="Travis Burandt" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WRANDTEL // U + U = W :: R&D :: 33</title>
+        <style>
+            body {
+                background-color: #2c3e50;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                font-family: "Courier New", monospace;
+            }
 
-    .tv-container {
-      position: relative;
-      width: 800px;
-      background-color: #8b4513;
-      border-radius: 20px 20px 0 0;
-      padding: 40px 40px 20px 40px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
-      margin-top: 8em;
-      margin-bottom: 6em;
-    }
+            .tv-container {
+                position: relative;
+                width: 800px;
+                background-color: #8b4513;
+                border-radius: 20px 20px 0 0;
+                padding: 40px 40px 20px 40px;
+                box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+                margin-top: 8em;
+                margin-bottom: 6em;
+            }
 
-    .antenna-container {
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 100px;
-      display: flex;
-      justify-content: space-between;
-    }
+            .antenna-container {
+                position: absolute;
+                top: -80px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 100px;
+                display: flex;
+                justify-content: space-between;
+            }
 
-    .antenna {
-      width: 10px;
-      height: 120px;
-      background-color: #000;
-      position: relative;
-      transform-origin: bottom;
-    }
+            .antenna {
+                width: 10px;
+                height: 120px;
+                background-color: #000;
+                position: relative;
+                transform-origin: bottom;
+            }
 
-    .antenna.left {
-      transform: rotate(-30deg);
-    }
+            .antenna.left {
+                transform: rotate(-30deg);
+            }
 
-    .antenna.right {
-      transform: rotate(30deg);
-    }
+            .antenna.right {
+                transform: rotate(30deg);
+            }
 
-    .antenna::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -5px;
-      width: 20px;
-      height: 20px;
-      background-color: #000;
-      border-radius: 50%;
-    }
+            .antenna::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -5px;
+                width: 20px;
+                height: 20px;
+                background-color: #000;
+                border-radius: 50%;
+            }
 
-    .tv-feet-container {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 400px;
-      display: flex;
-      justify-content: space-between;
-    }
+            .tv-feet-container {
+                position: absolute;
+                bottom: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+                display: flex;
+                justify-content: space-between;
+            }
 
-    .tv-foot {
-      width: 60px;
-      height: 20px;
-      background-color: #000;
-      border-radius: 0 0 10px 10px;
-    }
+            .tv-foot {
+                width: 60px;
+                height: 20px;
+                background-color: #000;
+                border-radius: 0 0 10px 10px;
+            }
 
-    .tv-screen {
-      position: relative;
-      height: 500px;
-      background-color: #000;
-      border-radius: 100px;
-      overflow: hidden;
-      border: 10px solid #4a2508;
-    }
+            .tv-screen {
+                position: relative;
+                height: 500px;
+                background-color: #000;
+                border-radius: 100px;
+                overflow: hidden;
+                border: 10px solid #4a2508;
+            }
 
-    .screen-content {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+            .screen-content {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+            }
 
-    .screen-content img {
-      max-width: 100%;
-      max-height: 100%;
-      opacity: 0.9;
-    }
+            .screen-content img {
+                max-width: 100%;
+                max-height: 100%;
+                opacity: 0.9;
+            }
 
-    .tv-base {
-      background-color: #8b4513;
-      height: 100px;
-      margin-top: 20px;
-      border-radius: 0 0 20px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 60px;
-    }
+            .tv-base {
+                background-color: #8b4513;
+                height: 100px;
+                margin-top: 20px;
+                border-radius: 0 0 20px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 60px;
+            }
 
-    .speaker {
-      width: 150px;
-      height: 60px;
-      background-color: #4a2508;
-      border-radius: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 10px;
-    }
+            .speaker {
+                width: 150px;
+                height: 60px;
+                background-color: #4a2508;
+                border-radius: 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
 
-    .speaker-hole {
-      background-color: #2c1810;
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
-    }
+            .speaker-hole {
+                background-color: #2c1810;
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+            }
 
-    .tv-brand {
-      color: #deb887;
-      font-size: 24px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+            .tv-brand {
+                color: #deb887;
+                font-size: 24px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
 
-    .control-knob {
-      width: 40px;
-      height: 40px;
-      background-color: #deb887;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+            .control-knob {
+                width: 40px;
+                height: 40px;
+                background-color: #deb887;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
 
-    .control-knob:hover {
-      transform: rotate(45deg);
-    }
+            .control-knob:hover {
+                transform: rotate(45deg);
+            }
 
-    .scanlines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.03) 50%,
-        rgba(0,0,0,0.03) 50%
-      );
-      background-size: 100% 4px;
-      pointer-events: none;
-    }
+            .scanlines {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0.03) 50%,
+                    rgba(0, 0, 0, 0.03) 50%
+                );
+                background-size: 100% 4px;
+                pointer-events: none;
+            }
 
-    .tv-reflection {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.1) 0%,
-        transparent 50%
-      );
-      pointer-events: none;
-    }
+            .tv-reflection {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    transparent 50%
+                );
+                pointer-events: none;
+            }
 
-    .power-light {
-      position: absolute;
-      bottom: 130px;
-      right: 30px;
-      width: 15px;
-      height: 15px;
-      background-color: #32cd32;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #32cd32;
-    }
-  </style>
-</head>
-<body>
-  <div class="tv-container">
-    <div class="antenna-container">
-      <div class="antenna left"></div>
-      <div class="antenna right"></div>
-    </div>
-    <div class="tv-screen">
-      <div class="screen-content">
-        <img src="/splash.jpg" alt="Rabbit balancing on a seesaw">
-        <div class="scanlines"></div>
-        <div class="tv-reflection"></div>
-      </div>
-    </div>
-    <div class="power-light"></div>
-    <div class="tv-base">
-      <div class="speaker">
-        <div class="speaker-hole"></div>
-        <div class="speaker-hole"></div>
-        <div class="speaker-hole"></div>
-      </div>
-      <div class="tv-brand">Wrandtel</div>
-      <div class="speaker">
-        <div class="speaker-hole"></div>
-        <div class="speaker-hole"></div>
-        <div class="speaker-hole"></div>
-      </div>
-    </div>
-    <div class="tv-feet-container">
-      <div class="tv-foot"></div>
-      <div class="tv-foot"></div>
-    </div>
-  </div>
-</body>
+            .power-light {
+                position: absolute;
+                bottom: 130px;
+                right: 30px;
+                width: 15px;
+                height: 15px;
+                background-color: #32cd32;
+                border-radius: 50%;
+                box-shadow: 0 0 10px #32cd32;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="tv-container">
+            <div class="antenna-container">
+                <div class="antenna left"></div>
+                <div class="antenna right"></div>
+            </div>
+            <div class="tv-screen">
+                <div class="screen-content">
+                    <img src="/splash.jpg" alt="Rabbit balancing on a seesaw" />
+                    <div class="scanlines"></div>
+                    <div class="tv-reflection"></div>
+                </div>
+            </div>
+            <div class="power-light"></div>
+            <div class="tv-base">
+                <div class="speaker">
+                    <div class="speaker-hole"></div>
+                    <div class="speaker-hole"></div>
+                    <div class="speaker-hole"></div>
+                </div>
+                <div class="tv-brand">Wrandtel</div>
+                <div class="speaker">
+                    <div class="speaker-hole"></div>
+                    <div class="speaker-hole"></div>
+                    <div class="speaker-hole"></div>
+                </div>
+            </div>
+            <div class="tv-feet-container">
+                <div class="tv-foot"></div>
+                <div class="tv-foot"></div>
+            </div>
+        </div>
+    </body>
 </html>
