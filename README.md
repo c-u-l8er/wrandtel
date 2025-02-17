@@ -1,3 +1,4 @@
+
 portfolio:
 - graphiti          // elixir transactional weighted property graph database
 - homeostatic       // elixir static site pipeline for high traffic volumed apps
