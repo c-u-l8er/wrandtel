@@ -14,6 +14,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>WRANDTEL Integrated Solutions Laboratory</title>
         <link rel="stylesheet" href="./index.css" />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
     </head>
     <body>
         <header class="cloud-header">
@@ -137,6 +141,10 @@
         </div>
         <!-- Divider Container -->
         <div class="divider-container">
+            <div class="divider-logo">
+                <img src="/WRANDTEL.png" alt="WRANDTEL" class="divider-image" />
+            </div>
+
             <div class="divider"></div>
         </div>
         <form
@@ -155,8 +163,56 @@
                     <textarea name="message"></textarea>
                 </label>
                 <!-- your other form fields go here -->
-                <button type="submit">Send</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
+        <div _ngcontent-tta-c22="" class="squiggle">
+            <svg
+                _ngcontent-tta-c22=""
+                aria-hidden="true"
+                width="100%"
+                height="8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <pattern
+                    _ngcontent-tta-c22=""
+                    id="a"
+                    width="91"
+                    height="8"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <g _ngcontent-tta-c22="" clip-path="url(#clip0_2426_11367)">
+                        <path
+                            _ngcontent-tta-c22=""
+                            d="M114 4c-5.067 4.667-10.133 4.667-15.2 0S88.667-.667 83.6 4 73.467 8.667 68.4 4 58.267-.667 53.2 4 43.067 8.667 38 4 27.867-.667 22.8 4 12.667 8.667 7.6 4-2.533-.667-7.6 4s-10.133 4.667-15.2 0S-32.933-.667-38 4s-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0"
+                            stroke="#000"
+                            stroke-linecap="square"
+                        ></path>
+                    </g>
+                </pattern>
+                <rect
+                    _ngcontent-tta-c22=""
+                    width="100%"
+                    height="100%"
+                    fill="url(#a)"
+                ></rect>
+            </svg>
+        </div>
+        <footer x-data="{ year: new Date().getFullYear() }">
+            <div class="footer-content">
+                <span style="float: right">Made in Texas, USA!</span>
+                <p>
+                    &copy; <span x-text="year"></span> by WRANDTEL Integrated
+                    Solutions Laboratory.<br />
+                    All rights reserved.
+                </p>
+                <nav class="footer-nav">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                </nav>
+            </div>
+        </footer>
     </body>
 </html>
