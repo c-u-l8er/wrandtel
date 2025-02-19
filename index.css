@@ -153,8 +153,7 @@ footer a:hover {
     border-radius: 20px 20px 0 0;
     padding: 40px 40px 20px 40px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    margin-top: 8em;
-    margin-bottom: 6em;
+    margin: 8em auto 6em auto;
 }
 
 .antenna-container {
@@ -328,8 +327,7 @@ footer a:hover {
 .banner {
     text-align: center;
     color: white;
-    margin-top: -4em;
-    margin-bottom: 4em;
+    margin: -4em auto 4em auto;
     max-width: 750px; /* Add this line */
 }
 
@@ -444,7 +442,7 @@ footer a:hover {
 .folder-container {
     width: 100%;
     max-width: 800px;
-    margin-bottom: 4em;
+    margin: 0 auto 4em;
 }
 
 .folder {
@@ -521,7 +519,7 @@ footer a:hover {
 .divider-container {
     width: 100%;
     max-width: 1000px; /* Matches the TV and folder containers */
-    margin: 4em auto; /* Consistent spacing */
+    margin: 4em auto 4em; /* Consistent spacing */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -701,5 +699,5 @@ footer {
     max-width: 1000px;
     width: 100%;
     color: #aaa;
-    margin: 0 0 2em;
+    margin: 0 auto 2em;
 }
