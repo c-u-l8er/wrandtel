@@ -158,7 +158,7 @@
                 </svg>
             </div>
             <div class="value-content">
-                <h2>Connecting Systems</h2>
+                <h2>Connect Systems</h2>
                 <p>
                     Seamlessly integrating disparate platforms and technologies
                     to create unified, efficient business solutions.
