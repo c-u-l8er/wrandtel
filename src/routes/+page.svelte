@@ -14,6 +14,14 @@
     />
 </svelte:head>
 
+<br />
+<br />
+<br />
+<div class="banner" style="margin: 0 auto;">
+    <div class="banner-subtitle">
+        INTEGRATED SOLUTIONS<br />LABORATORY
+    </div>
+</div>
 <div class="tv-container">
     <div class="antenna-container">
         <div class="antenna left"></div>
