@@ -46,7 +46,7 @@
             Project Architecture / Engineering<br />
             Cloud Architecture / Engineering<br />
             Data Architecture / Engineering<br />
-            SaaS Solutions
+            Web Solutions
         </p>
         <p>
             <b
