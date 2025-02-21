@@ -57,11 +57,11 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Technical Excellence</h2>
+                <h2>Fabrication Excellence</h2>
                 <p>
-                    Delivering exceptional results across cloud computing,
-                    AI/ML, data analytics, and automated manufacturing through
-                    battle-tested methodologies.
+                    Mastering precision manufacturing through state-of-the-art
+                    fabrication technologies, advanced materials processing, and
+                    integrated quality assurance systems.
                 </p>
             </div>
         </div>
