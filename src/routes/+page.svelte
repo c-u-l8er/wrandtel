@@ -114,7 +114,9 @@
             navigate complex challenges and seize opportunities for successful
             health and longevity results.
         </div>
-        <a href="/portfolio" class="folder-btn"> Discover Our Portfolio </a>
+        <a href="https://33.wrand.cc" class="folder-btn">
+            Discover Our Laboratory
+        </a>
     </div>
 </div>
 
