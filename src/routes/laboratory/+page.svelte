@@ -22,11 +22,11 @@
             <br />
             Between each of our services (inno, fab, & inv) we have processes in
             place that will quickly and rapidly advance your business idea to fruition
-            from laboratory to factory at production scale.
+            from laboratory to a factory at production scale.
             <br />
             <br />
             Read more about our processes, methodologies, and automation below and
-            consider partnering with WRANDTEL today! Free lab coats are not included.
+            consider joining 33.wrand.cc today! Free lab coats are not included.
             <br />
             <br />
         </p>

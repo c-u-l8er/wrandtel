@@ -10,6 +10,7 @@
             <a href="/" class="nav-home"> WRANDTEL </a>
         </div>
         <div class="nav-links">
+            <a href="/portfolio">Portfolio</a>
             <a href="/history">History</a>
             <a href="/values">Values</a>
             <a href="/laboratory">Lab #33</a>

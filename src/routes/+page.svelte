@@ -1,5 +1,20 @@
 <script lang="ts">
     import splash from "$lib/images/splash.jpg";
+
+    const portfolioTags = [
+        { name: "Our Clients", href: "/portfolio" },
+        { name: "Technical Acumen", href: "/portfolio" },
+        { name: "Gamification", href: "/portfolio" },
+        { name: "Global Resources", href: "/portfolio" },
+        { name: "Single Page Apps", href: "/portfolio" },
+        { name: "Cloud Infrastructure", href: "/portfolio" },
+        { name: "Platform Engineering", href: "/portfolio" },
+        { name: "Equipment", href: "/portfolio" },
+        { name: "Laboratory", href: "/portfolio" },
+        { name: "Product Philosophy", href: "/portfolio" },
+        { name: "Advanced Materials", href: "/portfolio" },
+        { name: "Domain Assets", href: "/portfolio" },
+    ];
 </script>
 
 <svelte:head>
@@ -122,12 +137,72 @@
     </p>
 </div>
 
-<div class="tagline-main"></div>
+<section class="portfolio-summary">
+    <h2>OUR BUSINESS PORTFOLIO</h2>
+    <div class="tag-cloud">
+        {#each portfolioTags as tag, i}
+            <a
+                href={tag.href}
+                class="tag"
+                style="--size: {Math.random() * 1.2 + 0.8}em; --hue: {(i *
+                    360) /
+                    portfolioTags.length}deg;"
+            >
+                {tag.name}
+            </a>
+        {/each}
+    </div>
+</section>
+<br />
+<br />
 
 <style>
     .tagline {
         font-style: italic;
         color: #ccc;
         text-align: center;
+    }
+
+    .portfolio-summary {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2em;
+        text-align: center;
+        /*  Remove the background for cleaner look if preferred
+            background-color: #f0f0f0; */
+        border-radius: 8px;
+    }
+
+    .portfolio-summary h2 {
+        color: #ccc;
+        margin: 0.5em;
+        font-size: 2em;
+    }
+
+    .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center; /* Vertically center tags */
+        gap: 0.5em; /* Spacing between tags */
+    }
+
+    .tag {
+        background-color: #8b4513;
+        color: white;
+        padding: 0.5em 0.75em;
+        border-radius: 0.3em;
+        text-decoration: none;
+        font-size: var(--size); /* Dynamically sized */
+        transition: transform 0.2s ease-in-out;
+        display: inline-block; /* Ensure scaling works properly */
+        --hue: 0deg; /* Default color */
+        /*  Optional: Add a border
+            border: 1px solid #888; */
+    }
+
+    .tag:hover {
+        transform: scale(1.1);
+        background-color: #a0522d;
     }
 </style>
