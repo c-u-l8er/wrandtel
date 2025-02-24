@@ -12,7 +12,7 @@
         <div class="nav-links">
             <a href="/history">History</a>
             <a href="/values">Values</a>
-            <a href="https://33.wrand.cc">Lab #33</a>
+            <a href="/laboratory">Lab #33</a>
         </div>
     </nav>
     <div class="cloud-bottom">

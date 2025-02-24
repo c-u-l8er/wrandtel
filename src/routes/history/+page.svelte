@@ -3,8 +3,13 @@
 </script>
 
 <svelte:head>
-    <title>History</title>
-    <meta name="description" content="WRANDTEL's History" />
+    <title>Our History</title>
+    <meta
+        name="description"
+        content="We are the innovative combination of domain experience, industry
+    excellence, technical acumen, and proven excellence; the simple &
+    sophisticated combination of people, process, and technology."
+    />
 </svelte:head>
 
 <div class="history-container">
@@ -63,12 +68,15 @@
                 ><a href="https://wrand.cc" target="_blank">WRANDTEL</a> (2025 -
                 current)</b
             ><br />
-            Ideation Architecture / Engineering<br />
-            Delivery Architecture / Engineering<br />
-            Maintenance Architecture / Engineering<br />
+            Innovation Architecture / Engineering<br />
+            Fabrication Architecture / Engineering<br />
+            Invention Architecture / Engineering<br />
             Integrated Solutions Laboratory
         </p>
-        <p>The map is not the territory but the pattern is the path.</p>
+        <p class="tagline">
+            "The map is not the territory, <br />but the pattern is the path."
+            ~ArtInt
+        </p>
     </div>
     <div class="image-column">
         <img src={history} alt="History Image" />
@@ -112,6 +120,11 @@
         max-width: 100%;
         height: auto;
         border-radius: 8px;
+    }
+
+    .tagline {
+        font-style: italic;
+        color: #ccc;
     }
 
     @media (max-width: 768px) {

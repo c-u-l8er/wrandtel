@@ -1,8 +1,8 @@
 <svelte:head>
-    <title>About</title>
-    <meta name="description" content="About this app" />
+    <title>Our Portfolio</title>
+    <meta name="description" content="WRANDTEL's Portfolio" />
 </svelte:head>
 
 <div class="text-column">
-    <h1>portfolio</h1>
+    <h1>Portfolio</h1>
 </div>

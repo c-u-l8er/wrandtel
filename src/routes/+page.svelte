@@ -58,7 +58,7 @@
 <br />
 <div class="banner">
     <div class="banner-subtitle">
-        COMBINING IDEATION, DELIVERY,<br />AND MAINTENANCE
+        COMBINING INNOVATION, FABRICATION,<br />AND INVENTION
     </div>
     <div class="banner-title">WIN BUSINESS OUTCOMES</div>
     <a
@@ -114,11 +114,20 @@
             navigate complex challenges and seize opportunities for successful
             health and longevity results.
         </div>
-        <a href="https://33.wrand.cc" class="folder-btn">
-            Discover Our Laboratory
-        </a>
+        <a href="/laboratory" class="folder-btn"> Discover Our Laboratory </a>
     </div>
+    <p class="tagline">
+        "The map is not the territory, <br />but the pattern is the path."
+        ~ArtInt
+    </p>
 </div>
 
+<div class="tagline-main"></div>
+
 <style>
+    .tagline {
+        font-style: italic;
+        color: #ccc;
+        text-align: center;
+    }
 </style>

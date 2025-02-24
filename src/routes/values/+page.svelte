@@ -1,6 +1,9 @@
 <svelte:head>
-    <title>Our Values</title>
-    <meta name="description" content="WRANDTEL's Core Values" />
+    <title>Discover Our Values</title>
+    <meta
+        name="description"
+        content="Design Leadership, Manufacturing Excellence, Survival Hardened, Graph Data, Connect Systems, and Web Networking"
+    />
 </svelte:head>
 
 <div class="values-container">
@@ -57,9 +60,9 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Fabrication Excellence</h2>
+                <h2>Manufacturing Excellence</h2>
                 <p>
-                    Mastering precision manufacturing through state-of-the-art
+                    Mastering precision engineering through state-of-the-art
                     fabrication technologies, advanced materials processing, and
                     integrated quality assurance systems.
                 </p>
@@ -195,9 +198,18 @@
             </div>
         </div>
     </div>
+    <p class="tagline">
+        "The map is not the territory, <br />but the pattern is the path."
+        ~ArtInt
+    </p>
 </div>
 
 <style>
+    .tagline {
+        font-style: italic;
+        color: #ccc;
+    }
+
     .values-container {
         max-width: 1000px;
         margin: 3em auto;
