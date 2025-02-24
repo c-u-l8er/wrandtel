@@ -26,12 +26,12 @@
             <br />
             <br />
             Read more about our processes, methodologies, and automation below and
-            consider joining 33.wrand.cc today! Free lab coats are not included.
+            consider joining wrand.cc/33 today! Free lab coats are not included.
             <br />
             <br />
         </p>
 
-        <a href="https://33.wrand.cc" target="_blank" class="get-started-btn">
+        <a href="/33" class="get-started-btn">
             Innovation, Fabrication, and Invention
         </a>
         <p class="tagline">
@@ -41,7 +41,9 @@
     </section>
 </div>
 <Divider />
-<div class="laboratory-container">
+<br />
+<br />
+<div class="processes-container">
     <section class="process">
         <h2>Our Innovation Process</h2>
         <p>
@@ -71,7 +73,6 @@
             </li>
         </ol>
     </section>
-    <br />
     <section class="process">
         <h2>Our Fabrication Process</h2>
         <p>
@@ -101,7 +102,6 @@
             </li>
         </ol>
     </section>
-    <br />
     <section class="process">
         <h2>Our Invention Process</h2>
         <p>
@@ -138,46 +138,46 @@
             </li>
         </ol>
     </section>
-    <br />
-    <section class="process">
-        <h2>Our Methodologies</h2>
-        <p>
-            WRANDTEL employs cutting-edge methodologies that bridge theoretical
-            frameworks with practical applications:
-        </p>
-        <ol>
-            <li>
-                <b>Design Thinking:</b> We embrace human-centered design principles
-                to ensure our solutions address real user needs and pain points while
-                maintaining technical excellence.
-            </li>
-            <li>
-                <b>Agile Development:</b> Our iterative approach allows for rapid
-                prototyping and continuous improvement through sprint-based development
-                cycles and regular stakeholder feedback.
-            </li>
-            <li>
-                <b>Systems Engineering:</b> We utilize comprehensive systems thinking
-                to understand complex interactions between components and ensure
-                robust, scalable solutions.
-            </li>
-            <li>
-                <b>Data-Driven Decision Making:</b> We leverage analytics and empirical
-                evidence to validate assumptions and guide strategic choices throughout
-                the development process.
-            </li>
-            <li>
-                <b>Cross-Disciplinary Integration:</b> We combine expertise from
-                multiple fields to create innovative solutions that transcend traditional
-                disciplinary boundaries.
-            </li>
-            <li>
-                <b>Sustainable Development:</b> We incorporate environmental and
-                social considerations into our design process to ensure long-term
-                viability and positive impact.
-            </li>
-        </ol>
-    </section>
+</div>
+
+<div class="methodology-container">
+    <h2>Our Methodologies</h2>
+    <p>
+        WRANDTEL employs cutting-edge methodologies that bridge theoretical
+        frameworks with practical applications:
+    </p>
+    <ol>
+        <li>
+            <b>Design Thinking:</b> We embrace human-centered design principles to
+            ensure our solutions address real user needs and pain points while maintaining
+            technical excellence.
+        </li>
+        <li>
+            <b>Agile Development:</b> Our iterative approach allows for rapid prototyping
+            and continuous improvement through sprint-based development cycles and
+            regular stakeholder feedback.
+        </li>
+        <li>
+            <b>Systems Engineering:</b> We utilize comprehensive systems thinking
+            to understand complex interactions between components and ensure robust,
+            scalable solutions.
+        </li>
+        <li>
+            <b>Data-Driven Decision Making:</b> We leverage analytics and empirical
+            evidence to validate assumptions and guide strategic choices throughout
+            the development process.
+        </li>
+        <li>
+            <b>Cross-Disciplinary Integration:</b> We combine expertise from multiple
+            fields to create innovative solutions that transcend traditional disciplinary
+            boundaries.
+        </li>
+        <li>
+            <b>Sustainable Development:</b> We incorporate environmental and social
+            considerations into our design process to ensure long-term viability
+            and positive impact.
+        </li>
+    </ol>
 </div>
 
 <style>
@@ -190,7 +190,22 @@
         color: #aaa;
         box-shadow: none;
     }
-
+    .methodology-container {
+        max-width: 600px; /* Wider container for larger screens */
+        margin: 0 auto;
+        padding: 2em;
+        text-align: left;
+        background-color: transparent;
+        color: #aaa;
+        box-shadow: none;
+        line-height: 1.6;
+    }
+    .methodology-container h2 {
+        text-align: center;
+    }
+    .methodology-container ol li {
+        margin: 0 0 1em;
+    }
     .hero {
         margin-bottom: 2em;
         max-width: 600px;
@@ -215,10 +230,24 @@
         color: #ccc;
     }
 
-    .process {
-        max-width: 600px;
+    .processes-container {
+        column-count: 3;
+        column-gap: 2em;
+        max-width: 1200px;
         margin: 0 auto;
-        text-align: left;
+        color: #aaa;
+        line-height: 1.6;
+    }
+
+    .processes-container {
+        display: flex; /* Use flexbox for the columns */
+        width: 100%; /* Make it full width */
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .process {
+        flex: 1; /* Each column takes equal space */
     }
 
     .process h2 {
@@ -234,6 +263,6 @@
     }
 
     .process li {
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
     }
 </style>

@@ -1,10 +1,10 @@
 <svelte:head>
-    <title>Our Portfolio</title>
+    <title>Grasp Our Business Portfolio</title>
     <meta name="description" content="WRANDTEL's Portfolio" />
 </svelte:head>
 
 <div class="portfolio-container">
-    <h1>Business Portfolio</h1>
+    <h1>Grasp Our<br />Business Portfolio</h1>
 
     <section class="portfolio-section">
         <h2>Platform</h2>
