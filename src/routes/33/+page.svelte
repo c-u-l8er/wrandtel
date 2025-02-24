@@ -30,7 +30,11 @@
     <div class="container">
         <h1>Lab #33 Admin Control Panel</h1>
         <p>You must be signed in to access this panel.</p>
-        <SignInButton class="get-started-btn" afterSignInUrl="/33" />
+        <SignInButton
+            class="get-started-btn"
+            afterSignInUrl="/33"
+            afterSignUpUrl="/33"
+        />
     </div>
 </SignedOut>
 
