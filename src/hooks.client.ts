@@ -9,8 +9,8 @@ async function initialize() {
   const { PUBLIC_CLERK_PUBLISHABLE_KEY } = await import("$env/static/public");
 
   initializeClerkClient(PUBLIC_CLERK_PUBLISHABLE_KEY, {
-    afterSignInUrl: null,
-    afterSignUpUrl: null,
+    afterSignInUrl: "https://wrand.cc/33",
+    afterSignUpUrl: "https://wrand.cc/33",
     signInUrl: "/auth/sign-in",
     signUpUrl: "/auth/sign-up",
   });
