@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>Laboratory (Innovation x Fabrication x Invention)</title>
+    <title>Lab #33 = Innovation x Fabrication x Invention</title>
     <meta
         name="description"
         content="At WRANDTEL's Lab #33, we productize groundbreaking ideas into fleets of solutions that are meticulously manufactured in assembly line fashion."
