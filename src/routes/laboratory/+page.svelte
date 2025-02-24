@@ -22,7 +22,7 @@
             <br />
             Between each of our services (inno, fab, & inv) we have processes in
             place that will quickly and rapidly advance your business idea to fruition
-            from laboratory to factory scale.
+            from laboratory to factory at production scale.
             <br />
             <br />
             Read more about our processes, methodologies, and automation below and
