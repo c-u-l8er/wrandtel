@@ -6,8 +6,8 @@ import { initializeClerkClient } from "clerk-sveltekit/client";
 import { PUBLIC_CLERK_PUBLISHABLE_KEY } from "$env/static/public";
 
 initializeClerkClient(PUBLIC_CLERK_PUBLISHABLE_KEY, {
-  afterSignInUrl: "/33/",
-  afterSignUpUrl: "/33/",
+  afterSignInUrl: undefined,
+  afterSignUpUrl: undefined,
   signInUrl: "/auth/sign-in",
   signUpUrl: "/auth/sign-up",
 });
