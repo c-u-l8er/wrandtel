@@ -6,7 +6,14 @@ import { CLERK_SECRET_KEY } from "$env/static/private";
 export const handle: Handle = sequence(
   handleClerk(CLERK_SECRET_KEY, {
     debug: true,
-    protectedPaths: ["/33"],
-    signInUrl: "/auth/sign-in",
+    protectedPaths: [
+      "/33/ideas",
+      "/33/concepts",
+      "/33/prototypes",
+      "/33/products",
+      "/33/expirements",
+      "/33/solutions",
+    ],
+    signInUrl: "https://wrand.cc/auth/sign-in",
   }),
 );
