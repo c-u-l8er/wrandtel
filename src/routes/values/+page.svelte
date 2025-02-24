@@ -64,7 +64,7 @@
                 <p>
                     Mastering precision engineering through state-of-the-art
                     fabrication technologies, advanced materials processing, and
-                    integrated quality assurance systems.
+                    automation.
                 </p>
             </div>
         </div>

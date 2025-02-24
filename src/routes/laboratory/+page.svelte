@@ -6,7 +6,7 @@
     <title>Laboratory (Innovation x Fabrication x Invention)</title>
     <meta
         name="description"
-        content="Welcome to our core. Where groundbreaking ideas are meticulously crafted, rigorously tested, and transformed into impactful solutions."
+        content="At WRANDTEL's Lab #33, we productize groundbreaking ideas into fleets of solutions that are meticulously manufactured in assembly line fashion."
     />
 </svelte:head>
 
@@ -15,9 +15,20 @@
         <h2>(Idea Factory)</h2>
         <h1>LABORATORY #33</h1>
         <p class="lead">
-            Welcome to our core. Where groundbreaking ideas are meticulously
-            crafted, rigorously tested, and transformed into impactful
-            solutions.
+            At WRANDTEL's Lab #33, we productize groundbreaking ideas into
+            fleets of solutions that are meticulously manufactured in assembly
+            line fashion.
+            <br />
+            <br />
+            Between each of our services (inno, fab, & inv) we have processes in
+            place that will quickly and rapidly advance your business idea to fruition
+            from laboratory to factory scale.
+            <br />
+            <br />
+            Read more about our processes, methodologies, and automation below and
+            consider partnering with WRANDTEL today! Free lab coats are not included.
+            <br />
+            <br />
         </p>
 
         <a href="https://33.wrand.cc" target="_blank" class="get-started-btn">
@@ -95,7 +106,7 @@
         <h2>Our Invention Process</h2>
         <p>
             Our invention process at WRANDTEL is where visionary concepts are
-            brought to life through a rigorous and creative methodology:
+            brought to life through a rigorous and creative manifestation:
         </p>
         <ol>
             <li>
@@ -111,12 +122,11 @@
                 and architectural blueprints.
             </li>
             <li>
-                <b>Prototype Development:</b> We build working prototypes to demonstrate
-                feasibility.
+                <b>Prototype:</b> We build working concept to demonstrate feasibility.
             </li>
             <li>
-                <b>Fabrication Integration:</b> We collaborate with our fabrication
-                team to transition from prototype to production.
+                <b>Fabrication:</b> We collaborate with our fabrication team to transition
+                from concept to production.
             </li>
             <li>
                 <b>Patent Research:</b> We evaluate intellectual property landscape
@@ -197,6 +207,7 @@
         font-size: 1.2em;
         line-height: 1.6;
         margin-bottom: 1em;
+        text-align: left;
     }
 
     .hero .tagline {

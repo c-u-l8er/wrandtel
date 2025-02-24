@@ -82,7 +82,7 @@
             Our values plus proven methodologies and strategic approach drive sustainable
             growth and operational excellence.
         </div>
-        <a href="/values" class="notecard-btn"> Learn About Our Values </a>
+        <a href="/values" class="notecard-btn">Discover Our Values</a>
     </div>
     <div class="notecard">
         <div class="notecard-title">OUR VAST HISTORY</div>
@@ -95,7 +95,7 @@
             have, however we have remained consistent on accelerating technical excellence,
             exploration, and truly differentiating business outcomes.
         </div>
-        <a href="/history" class="notecard-btn"> Learn Our History </a>
+        <a href="/history" class="notecard-btn">Learn Our History</a>
     </div>
 </div>
 <br />
@@ -114,7 +114,7 @@
             navigate complex challenges and seize opportunities for successful
             health and longevity results.
         </div>
-        <a href="/laboratory" class="folder-btn"> Discover Our Laboratory </a>
+        <a href="/laboratory" class="folder-btn">Idea Factory</a>
     </div>
     <p class="tagline">
         "The map is not the territory, <br />but the pattern is the path."

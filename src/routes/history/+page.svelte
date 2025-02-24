@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>Our History</title>
+    <title>Learn Our History</title>
     <meta
         name="description"
         content="We are the pioneering combination of domain experience, industry
@@ -14,7 +14,7 @@
 
 <div class="history-container">
     <div class="text-column">
-        <h1>Our History</h1>
+        <h1>Learn Our History</h1>
         <p>
             We are the pioneering combination of domain experience, industry
             excellence, technical acumen, and proven excellence; the simple yet
