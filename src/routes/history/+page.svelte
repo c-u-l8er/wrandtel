@@ -6,7 +6,7 @@
     <title>Our History</title>
     <meta
         name="description"
-        content="We are the innovative combination of domain experience, industry
+        content="We are the pioneering combination of domain experience, industry
     excellence, technical acumen, and proven excellence; the simple &
     sophisticated combination of people, process, and technology."
     />
@@ -16,15 +16,17 @@
     <div class="text-column">
         <h1>Our History</h1>
         <p>
-            We are the innovative combination of domain experience, industry
-            excellence, technical acumen, and proven excellence; the simple &
-            sophisticated combination of people, process, and technology.
+            We are the pioneering combination of domain experience, industry
+            excellence, technical acumen, and proven excellence; the simple yet
+            sophisticated amalgam of people, process, and technology for
+            innovation, fabrication, and invention.
         </p>
         <p>
             Founded in 2025 from the purchased assets of isTrav & subvind, we
             provide open source integrated solutions that are founded in proven
-            methodologies and technologies which drive true innovation and
-            superior business outcomes.
+            methodologies and technologies which drive industries from
+            discovery, through transformation, and on wards to superior business
+            outcomes.
         </p>
         <p>
             <b>Decades of History:</b>

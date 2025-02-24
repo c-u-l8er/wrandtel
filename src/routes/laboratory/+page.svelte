@@ -28,11 +28,9 @@
             ~ArtInt
         </p>
     </section>
-    <br />
-    <br />
-    <Divider />
-    <br />
-    <br />
+</div>
+<Divider />
+<div class="laboratory-container">
     <section class="process">
         <h2>Our Innovation Process</h2>
         <p>
@@ -49,8 +47,8 @@
                 through structured brainstorming and analysis.
             </li>
             <li>
-                <b>Invention:</b> We manifest a new minimal viable product and rapidly
-                itterate on it.
+                <b>Invention:</b> We manifest a new minimal viable product quickly
+                and rapidly.
             </li>
             <li>
                 <b>Validation:</b> We gather data and feedback to verify our approach

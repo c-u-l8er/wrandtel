@@ -74,7 +74,7 @@
     <div class="notecard">
         <div class="notecard-title">OUR SERVICES</div>
         <div class="notecard-body">
-            We specialize in providing the innovative combination of the right
+            We specialize in providing the pioneering combination of the right
             resources, adapting technology, and optimizing processes all enabled
             through industry expertise and best in class delivery excellence
             along the side of maintainable balanceability.
@@ -87,13 +87,13 @@
     <div class="notecard">
         <div class="notecard-title">OUR VAST HISTORY</div>
         <div class="notecard-body">
-            WRANDTEL is just the latest of our innovative companies, but we have
-            a long history of providing services within a well-rounded range of
-            technologies and industries.
+            WRANDTEL is just the latest of our avant-garde companies, but we
+            have a long history of providing services within a well-rounded
+            range of technologies and industries.
             <br /><br />
-            While our fundamental values have not changed, our goals have, but we
-            have always been consistent on accelerating technical excellence, innovation,
-            and truly differentiating business outcomes.
+            While our fundamental values have not changed, our abilities & targets
+            have, however we have remained consistent on accelerating technical excellence,
+            exploration, and truly differentiating business outcomes.
         </div>
         <a href="/history" class="notecard-btn"> Learn Our History </a>
     </div>
