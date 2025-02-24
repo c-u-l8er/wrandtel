@@ -11,17 +11,17 @@
 <br />
 <br />
 
-<SignUp redirectUrl="/33" />
+<div class="container">
+    <SignUp redirectUrl="/33" />
+</div>
 
 <br />
 <br />
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 475px;
         margin: 2em auto;
-        padding: 2em;
-        background-color: #f0f0f0;
         border-radius: 8px;
         text-align: center;
     }
