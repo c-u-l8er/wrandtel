@@ -22,18 +22,18 @@
             innovation, fabrication, and invention.
         </p>
         <p>
-            Founded in 2025 from the purchased assets of isTrav & subvind, we
-            provide open source integrated solutions that are founded in proven
-            methodologies and technologies which drive industries from
-            discovery, through transformation, and on wards to superior business
-            outcomes.
+            Founded in 2025 from the purchased assets of c-u-l8er, isTrav, &
+            subvind, we provide open source integrated solutions that are
+            founded in proven methodologies and technologies which drive
+            industries from discovery, through transformation, and on wards to
+            superior business outcomes.
         </p>
         <p>
             <b>Decades of History:</b>
         </p>
         <p>
             <b
-                ><a href="https://halotracks.org" target="_blank">c u l8er</a> (2007-2012)</b
+                ><a href="https://c-u-l8er.link" target="_blank">c u l8er</a> (2007-2012)</b
             ><br />
             Map Maker Architecture / Engineering<br />
             Community Architecture / Engineering<br />
