@@ -3,14 +3,14 @@
 
     const portfolioTags = [
         { name: "Our Clients", href: "/portfolio" },
+        { name: "Integrated Solutions", href: "/portfolio" },
         { name: "Technical Acumen", href: "/portfolio" },
-        { name: "Gamification", href: "/portfolio" },
+        { name: "Gamification Experiments", href: "/portfolio" },
         { name: "Global Resources", href: "/portfolio" },
         { name: "Single Page Apps", href: "/portfolio" },
         { name: "Cloud Infrastructure", href: "/portfolio" },
-        { name: "Platform Engineering", href: "/portfolio" },
-        { name: "Equipment", href: "/portfolio" },
-        { name: "Laboratory", href: "/portfolio" },
+        { name: "Internal Platform", href: "/portfolio" },
+        { name: "Laboratory Equipment", href: "/portfolio" },
         { name: "Product Philosophy", href: "/portfolio" },
         { name: "Advanced Materials", href: "/portfolio" },
         { name: "Domain Assets", href: "/portfolio" },
