@@ -9,24 +9,38 @@
     <section class="portfolio-section">
         <h2>Platform</h2>
         <p class="section-description">
-            Explore our projects that keep WRANDTEL running behind the scenes.
+            Explore our projects that keep us running behind the scenes.
         </p>
 
         <div class="portfolio-items">
             <div class="portfolio-item">
-                <h3>Laboratory</h3>
-                <p>Phoenix based idea factory aka #33.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Equipment</h3>
-                <p>Phoenix based laboratory tooling aka #88.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Graphiti</h3>
+                <h3>C U L8er</h3>
                 <p>
-                    Elixir based transactional weighted property graph database
-                    for #88.
+                    Ideation w/ landing splash page and load balancer
+                    integration.
                 </p>
+            </div>
+            <div class="portfolio-item">
+                <h3>WRANDTEL</h3>
+                <p>Idea factory aka #33 w/ laboratory equipment integration.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>BendScript</h3>
+                <p>
+                    Idea scripting aka #88 w/ meta-programming in Elixir
+                    integration.
+                </p>
+            </div>
+            <div class="portfolio-item">
+                <h3>WebTracks</h3>
+                <p>
+                    Idea tracking aka #123 for Single Page App(s) w/ Posthog
+                    integration.
+                </p>
+            </div>
+            <div class="portfolio-item">
+                <h3>WebHost</h3>
+                <p>Idea hosting aka #10 w/ XCP-ng & Dokploy integration.</p>
             </div>
         </div>
     </section>
@@ -41,19 +55,30 @@
         <div class="portfolio-items">
             <div class="portfolio-item">
                 <h3>Dojo</h3>
-                <p>Svelte based bulletin-board experiment for #33 as a SPA.</p>
+                <p>
+                    Svelte based bulletin-board experiment for #33 as a Single
+                    Page App.
+                </p>
             </div>
             <div class="portfolio-item">
                 <h3>Deja Vu</h3>
-                <p>Svelte based video experiment for #33 as a SPA.</p>
+                <p>
+                    Svelte based video experiment for #33 as a Single Page App.
+                </p>
             </div>
             <div class="portfolio-item">
                 <h3>Boutique</h3>
-                <p>Svelte based ecommerce experiment for #33 as a SPA.</p>
+                <p>
+                    Svelte based ecommerce experiment for #33 as a Single Page
+                    App.
+                </p>
             </div>
             <div class="portfolio-item">
                 <h3>Podium</h3>
-                <p>Svelte based tournament experiment for #33 as a SPA.</p>
+                <p>
+                    Svelte based tournament experiment for #33 as a Single Page
+                    App.
+                </p>
             </div>
         </div>
     </section>
@@ -73,6 +98,12 @@
             <div class="portfolio-item">
                 <h3>Formspree</h3>
                 <p>Form backend service.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Posthog</h3>
+                <p>
+                    Platform to analyze, test, observe, and deploy new features.
+                </p>
             </div>
         </div>
     </section>
@@ -96,6 +127,14 @@
             <div class="portfolio-item">
                 <h3>Hetzner</h3>
                 <p>Web hosting and dedicated server provider.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>XCP-ng</h3>
+                <p>High performance virtualization solution.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Dokploy</h3>
+                <p>Deployment and management of applications and databases.</p>
             </div>
         </div>
     </section>
@@ -204,8 +243,8 @@
 
         <div class="portfolio-items">
             <div class="portfolio-item">
-                <h3>bestest</h3>
-                <p>A client using our podium gamification</p>
+                <h3>brokenrecord.studio</h3>
+                <p>A client seeking TV gamification</p>
             </div>
         </div>
         <p class="tagline">
