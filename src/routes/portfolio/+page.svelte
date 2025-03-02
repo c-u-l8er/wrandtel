@@ -7,16 +7,17 @@
     <h1>Grasp Our<br />Business Portfolio</h1>
 
     <section class="portfolio-section">
-        <h2>Platform</h2>
+        <h2>Internal Platform</h2>
         <p class="section-description">
-            Explore our projects that keep us running behind the scenes.
+            Explore our domains of business that keep our ideation(s) running
+            behind the scenes.
         </p>
 
         <div class="portfolio-items">
             <div class="portfolio-item">
                 <h3>C U L8er</h3>
                 <p>
-                    Ideation w/ landing splash page and load balancer
+                    Ideation aka #0 w/ landing splash page and load balancer
                     integration.
                 </p>
             </div>
@@ -46,10 +47,37 @@
     </section>
 
     <section class="portfolio-section">
-        <h2>Gamification</h2>
+        <h2>Integrated Solutions</h2>
         <p class="section-description">
-            Explore our projects that leverage gamification to enhance user
-            engagement and drive innovation.
+            Explore our domains of expertise and excellence in ideation platform
+            technology.
+        </p>
+
+        <div class="portfolio-items">
+            <div class="portfolio-item">
+                <h3>isTrav</h3>
+                <p>
+                    Full-stack web interweaving using Phoenix and SvelteKit,
+                    specializing in scalable Single Page Applications with
+                    modern UI/UX design.
+                </p>
+            </div>
+            <div class="portfolio-item">
+                <h3>subvind</h3>
+                <p>
+                    Building engaged digital communities through interwoven
+                    information systems, real-time data, and collaborative
+                    platforms with gamification elements.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <h2>Gamification Experiments</h2>
+        <p class="section-description">
+            Explore our projects that leverage gamification in ideation platform
+            technology.
         </p>
 
         <div class="portfolio-items">
@@ -86,8 +114,8 @@
     <section class="portfolio-section">
         <h2>Global Resources</h2>
         <p class="section-description">
-            Discover the global resources we utilize to ensure reliable and
-            efficient service delivery.
+            Discover the global resources we utilize in ideation platform
+            technology.
         </p>
 
         <div class="portfolio-items">
@@ -111,8 +139,8 @@
     <section class="portfolio-section">
         <h2>Cloud Infrastructure</h2>
         <p class="section-description">
-            Learn about the infrastructure that supports our solutions, allowing
-            us to handle growth and maintain performance.
+            Learn about the infrastructure that supports our code in ideation
+            platform technology.
         </p>
 
         <div class="portfolio-items">
@@ -143,7 +171,7 @@
         <h2>Product Philosophy</h2>
         <p class="section-description">
             Gain insight into the guiding principles and technologies that shape
-            our product development.
+            our product development in ideation platform technology.
         </p>
 
         <div class="portfolio-items">
@@ -162,7 +190,7 @@
         <h2>Advanced Materials</h2>
         <p class="section-description">
             Explore the cutting-edge frameworks and libraries that we
-            incorporate to create modern and responsive user interfaces.
+            incorporate in ideation platform technology.
         </p>
 
         <div class="portfolio-items">
@@ -181,7 +209,7 @@
         <h2>Technical Acumen</h2>
         <p class="section-description">
             Delve into the array of technical skills and programming languages
-            that drive our development process.
+            that drive our development process in ideation platform technology.
         </p>
 
         <div class="portfolio-items">
@@ -238,7 +266,7 @@
         <h2>Our Clients</h2>
         <p class="section-description">
             Discover the clients who trust us to deliver innovative and
-            effective solutions.
+            effective results.
         </p>
 
         <div class="portfolio-items">
