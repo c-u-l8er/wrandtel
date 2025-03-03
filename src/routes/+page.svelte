@@ -21,7 +21,7 @@
     <title>WRANDTEL Integrated Solutions Laboratory</title>
     <meta
         name="description"
-        content="The map is not the territory but the pattern is the path."
+        content="'The map is not the territory but the pattern is the path.' ~ArtInt"
     />
     <meta
         name="keywords"
@@ -32,10 +32,11 @@
 <br />
 <br />
 <br />
+<br />
 <div class="banner" style="margin: 0 auto;">
-    <div class="banner-subtitle">
+    <a href="/33" class="banner-subtitle">
         INTEGRATED SOLUTIONS<br />LABORATORY
-    </div>
+    </a>
 </div>
 <div class="tv-container">
     <div class="antenna-container">

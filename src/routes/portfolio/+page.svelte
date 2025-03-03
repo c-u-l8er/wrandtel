@@ -17,20 +17,13 @@
             <div class="portfolio-item">
                 <h3>C U L8er</h3>
                 <p>
-                    Ideation aka #0 w/ landing splash page and load balancer
-                    integration.
+                    Idea incubation aka #0 w/ landing splash page and load
+                    balancer integration.
                 </p>
             </div>
             <div class="portfolio-item">
                 <h3>WRANDTEL</h3>
                 <p>Idea factory aka #33 w/ laboratory equipment integration.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>BendScript</h3>
-                <p>
-                    Idea scripting aka #88 w/ meta-programming in Elixir
-                    integration.
-                </p>
             </div>
             <div class="portfolio-item">
                 <h3>WebTracks</h3>
@@ -42,6 +35,13 @@
             <div class="portfolio-item">
                 <h3>WebHost</h3>
                 <p>Idea hosting aka #10 w/ XCP-ng & Dokploy integration.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>BendScript</h3>
+                <p>
+                    Idea scripting aka #88 w/ meta-programming in Elixir
+                    integration.
+                </p>
             </div>
         </div>
     </section>
