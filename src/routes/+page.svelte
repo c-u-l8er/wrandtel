@@ -82,7 +82,7 @@
         target="_blank"
         class="get-started-btn"
     >
-        Open Source
+        Let's Connect!
     </a>
 </div>
 <br />
