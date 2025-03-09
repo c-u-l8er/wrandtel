@@ -46,7 +46,7 @@
             <div class="portfolio-item">
                 <h3>TickTickClock</h3>
                 <p>
-                    Clock Processes aka #1 for invoice generation w/ Stripe
+                    Idea invoicing aka #1 for clock processes w/ Stripe
                     integration.
                 </p>
             </div>
