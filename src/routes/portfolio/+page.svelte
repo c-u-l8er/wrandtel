@@ -43,6 +43,13 @@
                     integration.
                 </p>
             </div>
+            <div class="portfolio-item">
+                <h3>TickTickClock</h3>
+                <p>
+                    Clock Processes aka #1 for invoice generation w/ Stripe
+                    integration.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -119,6 +126,10 @@
         </p>
 
         <div class="portfolio-items">
+            <div class="portfolio-item">
+                <h3>Dixie.js</h3>
+                <p>Local storage first browser database w/ cloud sync.</p>
+            </div>
             <div class="portfolio-item">
                 <h3>Clerk</h3>
                 <p>Authentication and user management platform.</p>
