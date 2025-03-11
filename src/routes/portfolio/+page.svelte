@@ -127,7 +127,7 @@
 
         <div class="portfolio-items">
             <div class="portfolio-item">
-                <h3>Dixie.js</h3>
+                <h3>Dexie.js</h3>
                 <p>Local storage first browser database w/ cloud sync.</p>
             </div>
             <div class="portfolio-item">
