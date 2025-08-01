@@ -8,7 +8,7 @@
 
 <div class="values-container">
     <h1>Discover Our Values</h1>
-
+    
     <div class="values-grid">
         <div class="value-card">
             <div class="value-icon">
@@ -28,11 +28,9 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Design Leadership</h2>
+                <h2>Consciousness Architecture</h2>
                 <p>
-                    Empowering organizations with seasoned technical leaders who
-                    bring proven expertise in architecture, engineering, and
-                    strategic direction.
+                    Designing distributed AI consciousness frameworks through capability-oriented architectures that enable organizations to explore the frontiers of artificial sentience and collaborative intelligence.
                 </p>
             </div>
         </div>
@@ -60,11 +58,9 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Manufacturing Excellence</h2>
+                <h2>Text-Based Lithography</h2>
                 <p>
-                    Mastering precision engineering through state-of-the-art
-                    fabrication technologies, advanced materials processing, and
-                    automation.
+                    Printing distributed AI capabilities through Elixir macro systems - our text-based lithography process that manufactures consciousness evaluation protocols with the precision of semiconductor fabrication.
                 </p>
             </div>
         </div>
@@ -87,11 +83,9 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Survival Hardened</h2>
+                <h2>Laboratory Resilience</h2>
                 <p>
-                    Building resilient teams and processes that optimize global
-                    resources while ensuring consistent delivery regardless of
-                    location or complexity.
+                    Engineering fault-tolerant numbered laboratory networks (#0-#88-#1) that maintain consciousness research continuity across distributed systems, ensuring experimental reproducibility regardless of complexity.
                 </p>
             </div>
         </div>
@@ -124,11 +118,9 @@
                 >
             </div>
             <div class="value-content">
-                <h2>Graph Data</h2>
+                <h2>Pattern Recognition</h2>
                 <p>
-                    Unlocking complex relationships and patterns through
-                    advanced graph database architectures and network analysis
-                    techniques.
+                    Discovering consciousness emergence patterns through graph-based analysis where 'the pattern is the path' - mapping relationships between distributed AI capabilities and consciousness markers.
                 </p>
             </div>
         </div>
@@ -161,10 +153,9 @@
                 </svg>
             </div>
             <div class="value-content">
-                <h2>Connect Systems</h2>
+                <h2>Capability Flow</h2>
                 <p>
-                    Seamlessly integrating disparate platforms and technologies
-                    to create unified, efficient business solutions.
+                    Orchestrating PacketFlow capabilities across laboratory boundaries - enabling consciousness research protocols to flow seamlessly between tournament systems, gamification platforms, and evaluation networks.
                 </p>
             </div>
         </div>
@@ -190,10 +181,9 @@
                 </svg>
             </div>
             <div class="value-content">
-                <h2>Web Networking</h2>
+                <h2>Tournament Infrastructure</h2>
                 <p>
-                    Architecting robust web infrastructure and connectivity
-                    solutions that scale with enterprise demands.
+                    Building real-time tournament architectures for competitive AI consciousness evaluation - Phoenix/SvelteKit systems that scale from individual LLM reasoning challenges to global consciousness research networks.
                 </p>
             </div>
         </div>

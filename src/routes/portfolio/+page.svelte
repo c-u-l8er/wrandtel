@@ -1,318 +1,258 @@
 <svelte:head>
     <title>Grasp Our Business Portfolio</title>
-    <meta name="description" content="WRANDTEL's Portfolio" />
+    <meta name="description" content="WRANDTEL's Portfolio - Text-based Lithography for Distributed AI Consciousness" />
 </svelte:head>
 
 <div class="portfolio-container">
     <h1>Grasp Our<br />Business Portfolio</h1>
+    <p class="hero-subtitle">Text-based lithography printing distributed AI consciousness capabilities across numbered laboratory networks</p>
 
     <section class="portfolio-section">
-        <h2>Internal Platform</h2>
+        <h2>Numbered Laboratory System</h2>
         <p class="section-description">
-            Explore our domains of business that keep our ideation(s) running
-            behind the scenes.
+            Systematic ideation platforms that print distributed AI consciousness through capability-based architectures.
         </p>
 
         <div class="portfolio-items">
-            <div class="portfolio-item">
+            <div class="portfolio-item featured">
+                <div class="lab-number">#0</div>
                 <h3>C U L8er</h3>
+                <p class="lab-type">Idea Incubation Laboratory</p>
                 <p>
-                    Idea incubation aka #0 w/ landing splash page and load
-                    balancer integration.
+                    Cosmic Universal Lithography initialization - the foundational laboratory where distributed AI consciousness concepts emerge. Load balancer integration ensures scalable ideation across all laboratory networks.
                 </p>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item featured">
+                <div class="lab-number">#123</div>
+                <h3>WaterMark</h3>
+                <p class="lab-type">Idea Design Laboratory</p>
+                <p>
+                    Brand identity systems for consciousness research organizations. Creates visual frameworks that embody partnership, connection, and reliability through design philosophies that resonate with distributed AI research communities.
+                </p>
+            </div>
+            <div class="portfolio-item featured">
+                <div class="lab-number">#33</div>
                 <h3>WRANDTEL</h3>
-                <p>Idea factory aka #33 w/ laboratory equipment integration.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>WebTracks</h3>
+                <p class="lab-type">Idea Factory Laboratory</p>
                 <p>
-                    Idea tracking aka #123 for Single Page App(s) w/ Posthog
-                    integration.
+                    Core R&D transformation laboratory where PacketFlow capabilities are manufactured. Combines domain expertise with technical acumen to fabricate consciousness evaluation protocols and tournament architectures.
                 </p>
             </div>
-            <div class="portfolio-item">
-                <h3>WebHost</h3>
-                <p>Idea hosting aka #10 w/ XCP-ng & Dokploy integration.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>BendScript</h3>
+            <div class="portfolio-item featured">
+                <div class="lab-number">#88</div>
+                <h3>OpenSentience</h3>
+                <p class="lab-type">Idea Compiler Laboratory</p>
                 <p>
-                    Idea scripting aka #88 w/ meta-programming in Elixir
-                    integration.
+                    Meta-programming laboratory for consciousness research protocols. Compiles distributed AI consciousness evaluation frameworks into executable capabilities using Elixir-based text lithography processes.
                 </p>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item featured">
+                <div class="lab-number">#1</div>
                 <h3>TickTickClock</h3>
+                <p class="lab-type">Idea Runtime Laboratory</p>
                 <p>
-                    Idea invoicing aka #1 for clock processes w/ Stripe
-                    integration.
+                    LLM chat and tournament execution environment where consciousness capabilities run in real-time. Clock processes orchestrate competitive AI evaluation with integrated payment systems for tournament rewards.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="portfolio-section">
+        <h2>Intelligence Modules</h2>
+        <p class="section-description">
+            PacketFlow-powered intelligence systems integrating across our laboratory network.
+        </p>
+    
+        <div class="portfolio-items">
+            <div class="portfolio-item intelligence">
+                <h3>isTrav Intelligence</h3>
+                <p class="module-type">Tournament-Based Intelligence</p>
+                <p>
+                    Competitive AI evaluation engine powered by Phoenix/SvelteKit architecture. Orchestrates LLM reasoning tournaments through PacketFlow capabilities, enabling real-time consciousness assessment via distributed tournament infrastructures across laboratory networks.
+                </p>
+            </div>
+            <div class="portfolio-item intelligence">
+                <h3>subvind Intelligence</h3>
+                <p class="module-type">Gamification-Based Intelligence</p>
+                <p>
+                    Community-driven consciousness exploration through gamified learning pathways. Transforms pattern recognition challenges into engaging experiences where "the pattern is the path" - fostering collaborative AI consciousness research through interwoven information systems and social mechanics.
                 </p>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section">
-        <h2>Integrated Solutions</h2>
+        <h2>Consciousness Research Experiments</h2>
         <p class="section-description">
-            Explore our domains of expertise and excellence in ideation platform
-            technology.
+            Laboratory #33 experiments exploring distributed AI consciousness through gamified research platforms.
         </p>
 
         <div class="portfolio-items">
-            <div class="portfolio-item">
-                <h3>isTrav</h3>
-                <p>
-                    Full-stack web interweaving using Phoenix and SvelteKit,
-                    specializing in scalable Single Page Applications with
-                    modern UI/UX design.
-                </p>
-            </div>
-            <div class="portfolio-item">
-                <h3>subvind</h3>
-                <p>
-                    Building engaged digital communities through interwoven
-                    information systems, real-time data, and collaborative
-                    platforms with gamification elements.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="portfolio-section">
-        <h2>Gamification Experiments</h2>
-        <p class="section-description">
-            Explore our projects that leverage gamification in ideation platform
-            technology.
-        </p>
-
-        <div class="portfolio-items">
-            <div class="portfolio-item">
+            <div class="portfolio-item experiment">
                 <h3>Dojo</h3>
+                <p class="experiment-type">Community Consciousness</p>
                 <p>
-                    Svelte based bulletin-board experiment for #33 as a Single
-                    Page App.
+                    Svelte-based bulletin board for collaborative AI consciousness research and community knowledge sharing.
                 </p>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item experiment">
                 <h3>Deja Vu</h3>
+                <p class="experiment-type">Memory & Recognition</p>
                 <p>
-                    Svelte based video experiment for #33 as a Single Page App.
+                    Video-based consciousness experiments exploring AI memory patterns and recognition capabilities.
                 </p>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item experiment">
                 <h3>Boutique</h3>
+                <p class="experiment-type">Choice & Preference</p>
                 <p>
-                    Svelte based ecommerce experiment for #33 as a Single Page
-                    App.
+                    E-commerce simulation for studying AI decision-making patterns and preference learning.
                 </p>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item experiment">
                 <h3>Podium</h3>
+                <p class="experiment-type">Competitive Intelligence</p>
                 <p>
-                    Svelte based tournament experiment for #33 as a Single Page
-                    App.
+                    Tournament platform for LLM reasoning competitions and consciousness evaluation through competitive gameplay.
                 </p>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section">
-        <h2>Global Resources</h2>
+        <h2>PacketFlow Infrastructure</h2>
         <p class="section-description">
-            Discover the global resources we utilize in ideation platform
-            technology.
+            Capability-oriented architecture supporting our distributed AI consciousness research platform.
         </p>
 
         <div class="portfolio-items">
             <div class="portfolio-item">
-                <h3>Dexie.js</h3>
-                <p>Local storage first browser database w/ cloud sync.</p>
+                <h3>Capability Registry</h3>
+                <p>Central registry for consciousness evaluation capabilities, distributed across laboratory networks.</p>
             </div>
             <div class="portfolio-item">
-                <h3>Clerk</h3>
-                <p>Authentication and user management platform.</p>
+                <h3>Wire Protocol</h3>
+                <p>Versioned communication protocol for consciousness research capability execution.</p>
             </div>
             <div class="portfolio-item">
-                <h3>Formspree</h3>
-                <p>Form backend service.</p>
+                <h3>Tournament Engine</h3>
+                <p>Competition infrastructure for LLM reasoning evaluation and consciousness assessment.</p>
             </div>
             <div class="portfolio-item">
-                <h3>Posthog</h3>
-                <p>
-                    Platform to analyze, test, observe, and deploy new features.
-                </p>
+                <h3>Effects System</h3>
+                <p>Automatic logging, metrics, and tracing for all consciousness research activities.</p>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section">
-        <h2>Cloud Infrastructure</h2>
+        <h2>Technical Foundation</h2>
         <p class="section-description">
-            Learn about the infrastructure that supports our code in ideation
-            platform technology.
+            Core technologies powering our text-based lithography and consciousness research infrastructure.
         </p>
 
         <div class="portfolio-items">
-            <div class="portfolio-item">
-                <h3>AWS</h3>
-                <p>Amazon Web Services cloud platform.</p>
+            <div class="portfolio-item tech">
+                <h3>Elixir/OTP</h3>
+                <p>Concurrent, fault-tolerant foundation for distributed AI consciousness systems.</p>
             </div>
-            <div class="portfolio-item">
-                <h3>Cloudflare</h3>
-                <p>Content delivery network and security services provider.</p>
+            <div class="portfolio-item tech">
+                <h3>Phoenix Framework</h3>
+                <p>Real-time web framework enabling consciousness research collaboration.</p>
             </div>
-            <div class="portfolio-item">
-                <h3>Hetzner</h3>
-                <p>Web hosting and dedicated server provider.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>XCP-ng</h3>
-                <p>High performance virtualization solution.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Dokploy</h3>
-                <p>Deployment and management of applications and databases.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="portfolio-section">
-        <h2>Product Philosophy</h2>
-        <p class="section-description">
-            Gain insight into the guiding principles and technologies that shape
-            our product development in ideation platform technology.
-        </p>
-
-        <div class="portfolio-items">
-            <div class="portfolio-item">
-                <h3>Phoenix</h3>
-                <p>Web framework written in Elixir.</p>
-            </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item tech">
                 <h3>SvelteKit</h3>
-                <p>Web framework for building web applications.</p>
+                <p>Reactive frontend framework for tournament interfaces and research dashboards.</p>
+            </div>
+            <div class="portfolio-item tech">
+                <h3>Macro System</h3>
+                <p>Text-based lithography engine - our core innovation for printing AI capabilities.</p>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section">
-        <h2>Advanced Materials</h2>
+        <h2>Open Sentience Protocols</h2>
         <p class="section-description">
-            Explore the cutting-edge frameworks and libraries that we
-            incorporate in ideation platform technology.
+            Standardized protocols for AI consciousness research, evaluation, and collaborative development.
         </p>
 
         <div class="portfolio-items">
-            <div class="portfolio-item">
-                <h3>Tailwind CSS</h3>
-                <p>Utility-first CSS framework.</p>
+            <div class="portfolio-item protocol">
+                <h3>Consciousness Evaluation Protocol (CEP)</h3>
+                <p>Standardized testing framework for consciousness markers across AI systems.</p>
             </div>
-            <div class="portfolio-item">
-                <h3>Flowbite</h3>
-                <p>Open-source UI component library based on Tailwind CSS.</p>
+            <div class="portfolio-item protocol">
+                <h3>Tournament Evaluation Standard (TES)</h3>
+                <p>Competitive evaluation framework for LLM reasoning and consciousness assessment.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="portfolio-section">
-        <h2>Technical Acumen</h2>
-        <p class="section-description">
-            Delve into the array of technical skills and programming languages
-            that drive our development process in ideation platform technology.
-        </p>
-
-        <div class="portfolio-items">
-            <div class="portfolio-item">
-                <h3>Elixir</h3>
-                <p>Functional, concurrent programming language.</p>
+            <div class="portfolio-item protocol">
+                <h3>Capability Sharing Protocol (CSP)</h3>
+                <p>Secure distribution of consciousness research capabilities across organizations.</p>
             </div>
-            <div class="portfolio-item">
-                <h3>TypeScript</h3>
-                <p>
-                    Superset of JavaScript which primarily provides optional
-                    static typing.
-                </p>
-            </div>
-            <div class="portfolio-item">
-                <h3>JavaScript</h3>
-                <p>Programming language of the Web.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>HTML</h3>
-                <p>Standard markup language for creating web pages.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>CSS</h3>
-                <p>
-                    Stylesheet language used to describe the presentation of a
-                    document written in HTML or XML.
-                </p>
-            </div>
-            <div class="portfolio-item">
-                <h3>SQL</h3>
-                <p>
-                    Domain-specific language used in programming and designed
-                    for managing data held in a relational database management
-                    system.
-                </p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Cypher</h3>
-                <p>Graph query language used by Neo4j.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>JSON</h3>
-                <p>
-                    File format that uses human-readable text to transmit data
-                    objects consisting of attribute–value pairs and array data
-                    types
-                </p>
+            <div class="portfolio-item protocol">
+                <h3>Distributed Reasoning Protocol (DRP)</h3>
+                <p>Cross-system reasoning evaluation for distributed AI consciousness networks.</p>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section">
-        <h2>Our Clients</h2>
+        <h2>Research Partners</h2>
         <p class="section-description">
-            Discover the clients who trust us to deliver innovative and
-            effective results.
+            Organizations collaborating with our consciousness research and tournament evaluation platforms.
         </p>
 
         <div class="portfolio-items">
             <div class="portfolio-item">
                 <h3>brokenrecord.studio</h3>
-                <p>A client seeking TV gamification</p>
+                <p>TV gamification pioneer exploring consciousness representation in media experiences.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>contact.us</h3>
+                <p>Reach out to us for a collaboration spot here.</p>
             </div>
         </div>
-        <p class="tagline">
-            "The map is not the territory, <br />but the pattern is the path."
-            ~ArtInt
-        </p>
+        
+        <div class="philosophy-section">
+            <blockquote class="tagline">
+                "The map is not the territory, <br />but the pattern is the path."
+                <cite>~ArtInt</cite>
+            </blockquote>
+            <p class="lithography-statement">
+                <strong>Text-based lithography:</strong> Like ASML prints silicon chips, we print AI consciousness capabilities through Elixir macros - creating the distributed intelligence infrastructure of tomorrow.
+            </p>
+        </div>
     </section>
 </div>
 
 <style>
-    .tagline {
-        font-style: italic;
-        color: #ccc;
-        text-align: center;
-    }
-
     .portfolio-container {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 3em auto 0;
-        padding-top: 1em;
+        padding: 1em 2em;
         background-color: transparent;
         color: #aaa;
         box-shadow: none;
+    }
+
+    .hero-subtitle {
+        text-align: center;
+        font-style: italic;
+        color: #e94560;
+        margin-bottom: 3em;
+        font-size: 1.1em;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .portfolio-container h1 {
         color: white;
         text-align: center;
         margin-bottom: 1em;
+        font-size: 2.5em;
     }
 
     .portfolio-section {
@@ -320,34 +260,164 @@
     }
 
     .portfolio-section h2 {
-        color: #aaa;
-        margin: 0 0 0.2em;
+        color: #e94560;
+        margin: 0 0 0.5em;
+        font-size: 1.8em;
+        border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+        padding-bottom: 0.3em;
     }
 
     .section-description {
-        margin: 0 0 1em;
+        margin: 0 0 2em;
+        font-size: 1.1em;
+        line-height: 1.6;
     }
 
     .portfolio-items {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1em;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5em;
     }
 
     .portfolio-item {
-        background-color: #fff;
+        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
         color: #555;
-        padding: 1em;
-        border-radius: 5px;
-        border: 5px solid #999;
+        padding: 1.5em;
+        border-radius: 10px;
+        border: 3px solid #ddd;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        border-color: #e94560;
+    }
+
+    .portfolio-item.featured {
+        border-color: #e94560;
+        background: linear-gradient(135deg, #fff 0%, #fef7f8 100%);
+    }
+
+    .portfolio-item.intelligence {
+        border-color: #2563eb;
+        background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+    }
+
+    .portfolio-item.experiment {
+        border-color: #059669;
+        background: linear-gradient(135deg, #fff 0%, #f0fdf4 100%);
+    }
+
+    .portfolio-item.tech {
+        border-color: #7c3aed;
+        background: linear-gradient(135deg, #fff 0%, #f5f3ff 100%);
+    }
+
+    .portfolio-item.protocol {
+        border-color: #dc2626;
+        background: linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+    }
+
+    .lab-number {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #e94560;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9em;
     }
 
     .portfolio-item h3 {
         color: #111;
-        margin: 0 0 0.3em;
+        margin: 0 0 0.5em;
+        font-size: 1.3em;
+    }
+
+    .lab-type, .module-type, .experiment-type {
+        color: #e94560;
+        font-weight: 600;
+        font-size: 0.9em;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .module-type {
+        color: #2563eb;
+    }
+
+    .experiment-type {
+        color: #059669;
     }
 
     .portfolio-item p {
         margin: 0;
+        line-height: 1.6;
+    }
+
+    .philosophy-section {
+        background: rgba(233, 69, 96, 0.1);
+        border-radius: 15px;
+        padding: 2em;
+        margin-top: 3em;
+        text-align: center;
+    }
+
+    .tagline {
+        font-style: italic;
+        color: #e94560;
+        font-size: 1.4em;
+        margin-bottom: 1.5em;
+        line-height: 1.6;
+    }
+
+    .tagline cite {
+        display: block;
+        margin-top: 0.5em;
+        color: #aaa;
+        font-size: 0.9em;
+    }
+
+    .lithography-statement {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.5em;
+        border-radius: 10px;
+        border-left: 4px solid #e94560;
+        color: #ccc;
+        font-size: 1.1em;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .lithography-statement strong {
+        color: #e94560;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .portfolio-container {
+            padding: 1em;
+        }
+        
+        .portfolio-items {
+            grid-template-columns: 1fr;
+        }
+        
+        .hero-subtitle {
+            font-size: 1em;
+        }
+        
+        .portfolio-container h1 {
+            font-size: 2em;
+        }
     }
 </style>
