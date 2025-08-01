@@ -74,9 +74,9 @@
 <br />
 <div class="banner">
     <div class="banner-subtitle">
-        COMBINING INNOVATION, FABRICATION,<br />AND INVENTION
+        COMBINING CONSCIOUSNESS, LITHOGRAPHY,<br />AND CAPABILITIES
     </div>
-    <div class="banner-title">WIN BUSINESS OUTCOMES</div>
+    <div class="banner-title">WIN INTELLIGENCE OUTCOMES</div>
     <a
         href="https://github.com/c-u-l8er"
         target="_blank"
@@ -90,26 +90,24 @@
     <div class="notecard">
         <div class="notecard-title">OUR SERVICES</div>
         <div class="notecard-body">
-            We specialize in providing the pioneering combination of the right
-            resources, adapting technology, and optimizing processes all enabled
-            through industry expertise and best in class delivery excellence
-            along the side of maintainable balanceability.
+            We specialize in providing the pioneering combination of the right capabilities, 
+            adapting consciousness, and optimizing protocols all enabled through laboratory
+            expertise and best in class tournament excellence along the side of maintainable consciousness. 
             <br /><br />
-            Our values plus proven methodologies and strategic approach drive sustainable
-            growth and operational excellence.
+            Our values plus proven architectures and strategic approach drive sustainable intelligence
+            and operational consciousness.
         </div>
         <a href="/values" class="notecard-btn">Discover Our Values</a>
     </div>
     <div class="notecard">
         <div class="notecard-title">OUR VAST HISTORY</div>
         <div class="notecard-body">
-            WRANDTEL is just the latest of our avant-garde companies, but we
-            have a long history of providing services within a well-rounded
-            range of technologies and industries.
+            WRANDTEL is just the latest of our avant-garde laboratories, but we have a long history 
+            of providing capabilities within a well-rounded range of consciousness and industries.
             <br /><br />
-            While our fundamental values have not changed, our abilities & targets
-            have, however we have remained consistent on accelerating technical excellence,
-            exploration, and truly differentiating business outcomes.
+            While our fundamental values have not changed, our abilities & targets have, however we 
+            have remained consistent on accelerating technical consciousness, exploration, and truly 
+            differentiating intelligence outcomes.
         </div>
         <a href="/history" class="notecard-btn">Learn Our History</a>
     </div>
@@ -121,14 +119,12 @@
     <div class="folder">
         <div class="folder-title">Why WRANDTEL</div>
         <div class="folder-body">
-            WRANDTEL is a leading R&D business transformation integrated
-            solutions laboratory that ships open source code dedicated to
-            empowering organizations to win business outcomes. Our team of
-            experts combines domain experience, industry knowledge, and
-            technical acumen to drive ideation, deliver tangible results, and
-            maintain homeostasis. We are committed to helping businesses
-            navigate complex challenges and seize opportunities for successful
-            health and longevity results.
+            WRANDTEL is a leading R&D consciousness transformation integrated solutions laboratory 
+            that ships open source capabilities dedicated to empowering organizations to win intelligence 
+            outcomes. Our team of experts combines domain consciousness, industry knowledge, and technical 
+            lithography to drive consciousness, deliver tangible capabilities, and maintain consciousness. 
+            We are committed to helping businesses navigate complex consciousness and seize opportunities 
+            for successful intelligence and longevity capabilities.
         </div>
         <a href="/laboratory" class="folder-btn">Idea Factory</a>
     </div>
