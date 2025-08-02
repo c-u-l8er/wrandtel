@@ -41,7 +41,7 @@
             <div class="portfolio-item featured">
                 <div class="lab-number">#88</div>
                 <h3>OpenSentience</h3>
-                <p class="lab-type">Idea Compiler Laboratory</p>
+                <p class="lab-type">Idea Framework Laboratory</p>
                 <p>
                     Meta-programming laboratory for consciousness research protocols. Compiles distributed AI consciousness evaluation frameworks into executable capabilities using Elixir-based text lithography processes.
                 </p>
