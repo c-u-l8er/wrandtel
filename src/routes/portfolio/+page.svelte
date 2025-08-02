@@ -15,7 +15,7 @@
 
         <div class="portfolio-items">
             <div class="portfolio-item featured">
-                <div class="lab-number">#0</div>
+                <div class="lab-number">#123</div>
                 <h3>C U L8er</h3>
                 <p class="lab-type">Idea Incubation Laboratory</p>
                 <p>
@@ -23,7 +23,7 @@
                 </p>
             </div>
             <div class="portfolio-item featured">
-                <div class="lab-number">#123</div>
+                <div class="lab-number">#1</div>
                 <h3>WaterMark</h3>
                 <p class="lab-type">Idea Design Laboratory</p>
                 <p>
@@ -31,7 +31,7 @@
                 </p>
             </div>
             <div class="portfolio-item featured">
-                <div class="lab-number">#33</div>
+                <div class="lab-number">#10</div>
                 <h3>WRANDTEL</h3>
                 <p class="lab-type">Idea Factory Laboratory</p>
                 <p>
@@ -39,7 +39,7 @@
                 </p>
             </div>
             <div class="portfolio-item featured">
-                <div class="lab-number">#88</div>
+                <div class="lab-number">#35</div>
                 <h3>OpenSentience</h3>
                 <p class="lab-type">Idea Framework Laboratory</p>
                 <p>
@@ -47,7 +47,7 @@
                 </p>
             </div>
             <div class="portfolio-item featured">
-                <div class="lab-number">#1</div>
+                <div class="lab-number">#33</div>
                 <h3>TickTickClock</h3>
                 <p class="lab-type">Idea Runtime Laboratory</p>
                 <p>

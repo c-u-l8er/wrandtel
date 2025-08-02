@@ -31,7 +31,7 @@
             <a href="/portfolio">Portfolio</a>
             <a href="/history">History</a>
             <a href="/values">Values</a>
-            <a href="/laboratory">Lab #33</a>
+            <a href="/laboratory">Idea Factory</a>
         </div>
     </nav>
     <div class="cloud-bottom">
