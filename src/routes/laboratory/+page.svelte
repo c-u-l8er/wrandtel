@@ -3,19 +3,19 @@
 </script>
 
 <svelte:head>
-    <title>Lab #33 = Innovation x Fabrication x Invention</title>
+    <title>Lab #88 = Innovation x Fabrication x Invention</title>
     <meta
         name="description"
-        content="At WRANDTEL's Lab #33, we productize groundbreaking ideas into fleets of solutions that are meticulously manufactured in assembly line fashion."
+        content="At WRANDTEL's Lab #88, we productize groundbreaking ideas into fleets of solutions that are meticulously manufactured in assembly line fashion."
     />
 </svelte:head>
 
 <div class="laboratory-container">
     <section class="hero">
         <h2>(Idea Factory)</h2>
-        <h1>LABORATORY #33</h1>
+        <h1>LABORATORY #88</h1>
         <p class="lead">
-            At WRANDTEL's Lab #33, we productize groundbreaking ideas into
+            At WRANDTEL's Lab #88, we productize groundbreaking ideas into
             fleets of solutions that are meticulously manufactured in assembly
             line fashion.
             <br />
@@ -26,12 +26,12 @@
             <br />
             <br />
             Read more about our processes, methodologies, and automation below and
-            consider joining wrand.cc/33 today! Free lab coats are not included.
+            consider joining wrand.cc/88 today! Free lab coats are not included.
             <br />
             <br />
         </p>
 
-        <a href="/33" class="get-started-btn">
+        <a href="/88" class="get-started-btn">
             Innovation, Fabrication, and Invention
         </a>
         <p class="tagline">

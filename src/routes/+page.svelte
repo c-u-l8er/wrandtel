@@ -2,18 +2,14 @@
     import splash from "$lib/images/splash.jpg";
 
     const portfolioTags = [
-        { name: "Our Clients", href: "/portfolio" },
-        { name: "Integrated Solutions", href: "/portfolio" },
-        { name: "Technical Acumen", href: "/portfolio" },
-        { name: "Gamification Experiments", href: "/portfolio" },
-        { name: "Global Resources", href: "/portfolio" },
-        { name: "Single Page Apps", href: "/portfolio" },
-        { name: "Cloud Infrastructure", href: "/portfolio" },
-        { name: "Internal Platform", href: "/portfolio" },
-        { name: "Laboratory Equipment", href: "/portfolio" },
-        { name: "Product Philosophy", href: "/portfolio" },
-        { name: "Advanced Materials", href: "/portfolio" },
-        { name: "Domain Assets", href: "/portfolio" },
+        { name: "Numbered Laboratory System", href: "/portfolio" },
+        { name: "Intelligence Modules", href: "/portfolio" },
+        { name: "Consciousness Research Experiments", href: "/portfolio" },
+        { name: "PacketFlow Infrastructure", href: "/portfolio" },
+        { name: "Technical Foundation", href: "/portfolio" },
+        { name: "Open Sentience Protocols", href: "/portfolio" },
+        { name: "Research Partners", href: "/portfolio" },
+        { name: "Text-Based Lithography", href: "/portfolio" },
     ];
 </script>
 
@@ -34,7 +30,7 @@
 <br />
 <br />
 <div class="banner" style="margin: 0 auto;">
-    <a href="/33" class="banner-subtitle">
+    <a href="/88" class="banner-subtitle">
         INTEGRATED SOLUTIONS<br />LABORATORY
     </a>
 </div>

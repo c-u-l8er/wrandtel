@@ -55,7 +55,7 @@
         border-radius: 5px;
         margin-top: 1em;
         background-color: #fff;
-        color: #333;
+        color: #883;
     }
 
     .item {

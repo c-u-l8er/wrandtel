@@ -9,7 +9,7 @@
     import { goto } from "$app/navigation"; // Import goto
 
     function handleSignIn() {
-        goto("/33"); // Programmatically navigate after sign-in
+        goto("/88"); // Programmatically navigate after sign-in
     }
 
     function handleSignOut() {
@@ -18,8 +18,8 @@
 </script>
 
 <svelte:head>
-    <title>Lab #33 Admin Control Panel</title>
-    <meta name="description" content="Admin Control Panel for Lab #33" />
+    <title>Lab #88 Admin Control Panel</title>
+    <meta name="description" content="Admin Control Panel for Lab #88" />
 </svelte:head>
 
 <br />
@@ -28,19 +28,19 @@
 
 <SignedOut>
     <div class="container">
-        <h1>Lab #33 Admin Control Panel</h1>
+        <h1>Lab #88 Admin Control Panel</h1>
         <p>You must be signed in to access this panel.</p>
         <SignInButton
             class="get-started-btn"
-            afterSignInUrl="/33"
-            afterSignUpUrl="/33"
+            afterSignInUrl="/88"
+            afterSignUpUrl="/88"
         />
     </div>
 </SignedOut>
 
 <SignedIn>
     <div class="container">
-        <h1>Lab #33 Admin Control Panel</h1>
+        <h1>Lab #88 Admin Control Panel</h1>
         <AdminPanel />
         <br />
         <SignOutButton
@@ -64,7 +64,7 @@
     }
 
     h1 {
-        color: #333;
+        color: #883;
         margin-bottom: 1em;
     }
 

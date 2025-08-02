@@ -12,7 +12,7 @@
 <br />
 
 <div class="container">
-    <SignIn redirectUrl="/33" />
+    <SignIn redirectUrl="/88" />
 </div>
 
 <br />
@@ -27,7 +27,7 @@
     }
 
     h1 {
-        color: #333;
+        color: #883;
         margin-bottom: 1em;
     }
 

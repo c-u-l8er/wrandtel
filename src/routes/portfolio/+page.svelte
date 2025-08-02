@@ -31,7 +31,7 @@
                 </p>
             </div>
             <div class="portfolio-item featured">
-                <div class="lab-number">#10</div>
+                <div class="lab-number">#88</div>
                 <h3>WRANDTEL</h3>
                 <p class="lab-type">Idea Factory Laboratory</p>
                 <p>
@@ -84,7 +84,7 @@
     <section class="portfolio-section">
         <h2>Consciousness Research Experiments</h2>
         <p class="section-description">
-            Laboratory #33 experiments exploring distributed AI consciousness through gamified research platforms.
+            Laboratory #88 experiments exploring distributed AI consciousness through gamified research platforms.
         </p>
 
         <div class="portfolio-items">

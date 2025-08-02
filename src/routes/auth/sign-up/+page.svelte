@@ -12,7 +12,7 @@
 <br />
 
 <div class="container">
-    <SignUp redirectUrl="/33" />
+    <SignUp redirectUrl="/88" />
 </div>
 
 <br />
@@ -27,7 +27,7 @@
     }
 
     h1 {
-        color: #333;
+        color: #883;
         margin-bottom: 1em;
     }
 
