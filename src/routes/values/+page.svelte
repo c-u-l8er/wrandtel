@@ -8,7 +8,7 @@
 
 <div class="values-container">
     <h1>Discover Our Values</h1>
-    
+
     <div class="values-grid">
         <div class="value-card">
             <div class="value-icon">
@@ -85,7 +85,7 @@
             <div class="value-content">
                 <h2>Laboratory Resilience</h2>
                 <p>
-                    Engineering fault-tolerant numbered laboratory networks (#0-#88-#1) that maintain consciousness research continuity across distributed systems, ensuring experimental reproducibility regardless of complexity.
+                    Engineering fault-tolerant numbered laboratory networks (#123-#1-#10-#35-#33) that maintain consciousness research continuity across distributed systems, ensuring experimental reproducibility regardless of complexity.
                 </p>
             </div>
         </div>
