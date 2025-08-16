@@ -26,7 +26,7 @@
             subvind, we provide open source integrated solutions that are
             founded in proven methodologies and technologies which drive
             industries from discovery, through transformation, and on wards to
-            superior business outcomes.
+            superior intelligence outcomes.
         </p>
         <p>
             <b>Decades of History:</b>
