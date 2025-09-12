@@ -14,7 +14,8 @@
         }
         
         body {
-            font-family: 'Orbitron', monospace;
+            font-family: monospace;
+            font-size: 16px;
             background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f23 70%, #000000 100%);
             color: #00ffff;
             overflow: hidden;
@@ -104,7 +105,7 @@
         }
         
         .data-stream {
-            font-size: 10px;
+            font-size: 12px;
             color: #00ff00;
             font-family: monospace;
         }
@@ -170,7 +171,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Orbitron', monospace;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -193,7 +194,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .status-light {
@@ -219,7 +220,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Orbitron', monospace;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -266,11 +267,51 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
+        }
+
+        .contact-form {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            font-family: 'Orbitron', monospace;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: linear-gradient(145deg, #003366 0%, #0066cc 100%);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            box-shadow: 0 0 15px #00ffff;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -459,7 +500,16 @@
                         <p>Direct communication protocols available for business transformation consultation, R&D laboratory access, and integrated solution deployment coordination.</p>
                     </div>
                     <div class="content-section">
-                        <h2>Transmission Methods</h2>
+                        <h2>Transmission Form</h2>
+                        <form class="contact-form" action="https://formspree.io/f/myzkbppo" method="POST">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit">Send Transmission</button>
+                        </form>
+                    </div>
+                    <div class="content-section">
+                        <h2>Alternative Channels</h2>
                         <p>Secure channels established for project initiation, consultation requests, and partnership protocol discussions. Response time optimized for mission-critical communications.</p>
                     </div>
                 `
@@ -513,10 +563,22 @@
         }
 
         function togglePower() {
-            document.body.style.filter = document.body.style.filter ? '' : 'brightness(0.3)';
+            const screenContent = document.getElementById('screenContent');
+            const originalContent = screenContent.innerHTML;
+            screenContent.innerHTML = `
+                <div class="screen-header">POWER MANAGEMENT ACTIVATED</div>
+                <div class="content-section">
+                    <h2>System Status</h2>
+                    <p>Power conservation mode engaged...</p>
+                    <p>Non-essential systems shutting down...</p>
+                    <p>Restoring normal operations in 3 seconds...</p>
+                </div>
+            `;
+            document.body.style.filter = 'brightness(0.3)';
             setTimeout(() => {
                 document.body.style.filter = '';
-            }, 1000);
+                screenContent.innerHTML = originalContent;
+            }, 3000);
         }
 
         function initiateScan() {
@@ -533,10 +595,31 @@
         }
 
         function emergencyProtocol() {
+            const screenContent = document.getElementById('screenContent');
+            const originalContent = screenContent.innerHTML;
+            screenContent.innerHTML = `
+                <div class="screen-header" style="color: #ff0000;">EMERGENCY PROTOCOL ENGAGED</div>
+                <div class="content-section">
+                    <h2>Alert Status</h2>
+                    <p style="color: #ffaa00;">Critical systems activated...</p>
+                    <p style="color: #ffaa00;">Evacuation protocols initiated...</p>
+                    <p style="color: #ffaa00;">Standby for further instructions...</p>
+                </div>
+            `;
             document.body.style.background = 'radial-gradient(ellipse at center, #2e1a1a 0%, #23230f 70%, #000000 100%)';
+            let flashCount = 0;
+            const flashInterval = setInterval(() => {
+                document.body.style.filter = document.body.style.filter ? '' : 'brightness(1.5)';
+                flashCount++;
+                if (flashCount >= 6) {
+                    clearInterval(flashInterval);
+                    document.body.style.filter = '';
+                }
+            }, 200);
             setTimeout(() => {
                 document.body.style.background = 'radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f23 70%, #000000 100%)';
-            }, 2000);
+                screenContent.innerHTML = originalContent;
+            }, 4000);
         }
 
         // Initialize
