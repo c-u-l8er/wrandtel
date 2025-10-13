@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRANDTEL - Command Interface</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: monospace;
+            font-size: 16px;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f23 70%, #000000 100%);
+            color: #00ffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .starfield {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .bridge-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .main-screen {
+            flex: 1;
+            background: linear-gradient(135deg, #001122 0%, #003366 100%);
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 30px #00ffff,
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+        }
+        
+        .screen-header-area {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            height: 60px;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .power-indicator {
+            width: 20px;
+            height: 20px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00ff00;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff;
+            letter-spacing: 3px;
+        }
+        
+        .data-stream {
+            font-size: 12px;
+            color: #00ff00;
+            font-family: monospace;
+        }
+        
+        .screen-frame {
+            position: absolute;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid #0066cc;
+            border-radius: 15px;
+            background: rgba(0, 20, 40, 0.8);
+        }
+        
+        .screen-content {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .control-panels {
+            display: flex;
+            gap: 20px;
+            height: 180px;
+        }
+        
+        .control-panel {
+            flex: 1;
+            background: linear-gradient(145deg, #1a1a3a 0%, #2d2d5a 100%);
+            border: 2px solid #ffaa00;
+            border-radius: 15px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+        
+        .panel-title {
+            color: #ffaa00;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .channel-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .channel-btn {
+            background: linear-gradient(145deg, #003366 0%, #0066cc 100%);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .channel-btn:hover, .channel-btn.active {
+            background: linear-gradient(145deg, #0066cc 0%, #00aaff 100%);
+            box-shadow: 0 0 15px #00ffff;
+            transform: translateY(-2px);
+        }
+        
+        .status-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+        
+        .status-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            animation: pulse 2s infinite;
+        }
+        
+        .system-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .system-btn {
+            background: linear-gradient(145deg, #660033 0%, #cc0066 100%);
+            border: 1px solid #ff0099;
+            color: #ff0099;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .system-btn:hover {
+            box-shadow: 0 0 15px #ff0099;
+            transform: translateY(-1px);
+        }
+        
+        .screen-header {
+            color: #00ffff;
+            font-size: 24px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .content-section h2 {
+            color: #ffaa00;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+        
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .contact-form {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            font-family: 'Orbitron', monospace;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: linear-gradient(145deg, #003366 0%, #0066cc 100%);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            box-shadow: 0 0 15px #00ffff;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #00ffff;
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .footer a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-shadow: 0 0 15px #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    
+    <div class="bridge-container">
+        <div class="main-screen">
+            <div class="screen-header-area">
+                <div class="header-left">
+                    <div class="power-indicator"></div>
+                    <div class="logo">WRANDTEL</div>
+                </div>
+                <div class="data-stream" id="dataStream">SYSTEM STATUS: NOMINAL</div>
+            </div>
+            
+            <div class="screen-frame">
+                <div class="grid-lines"></div>
+                <div class="screen-content" id="screenContent">
+                    <div class="screen-header">COMMAND INTERFACE ACTIVE</div>
+                    
+                    <div class="content-section">
+                        <h2>Mission Overview</h2>
+                        <p>WRANDTEL systems operational. Advanced R&D laboratory specializing in business transformation and technology integration. Mission-critical solutions deployment ready.</p>
+                        <p>We deliver cutting-edge technology solutions, strategic business consulting, and innovative R&D services to accelerate your organization's growth and competitive advantage.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Strategic Objectives</h2>
+                        <p>Our mission: Transform businesses through innovative technology solutions and strategic consulting. We combine deep technical expertise with proven methodologies to deliver measurable results and sustainable competitive advantages.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>System Quote</h2>
+                        <p style="font-style: italic; color: #ffaa00;">"The map is not the territory, but the pattern is the path." ~ArtInt</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Recent Deployments</h2>
+                        <p>Latest successful missions include: AI-powered customer analytics platform, blockchain supply chain solution, and cloud-native microservices architecture for enterprise clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-panels">
+            <div class="control-panel">
+                <div class="panel-title">Navigation Channels</div>
+                <div class="channel-buttons">
+                    <button class="channel-btn active" onclick="selectChannel('home')">Home Base</button>
+                    <button class="channel-btn" onclick="selectChannel('services')">Services</button>
+                    <button class="channel-btn" onclick="selectChannel('values')">Core Values</button>
+                    <button class="channel-btn" onclick="selectChannel('history')">History Log</button>
+                    <button class="channel-btn" onclick="selectChannel('laboratory')">Idea Factory</button>
+                    <button class="channel-btn" onclick="selectChannel('contact')">Communications</button>
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <div class="panel-title">System Status</div>
+                <div class="status-indicators">
+                    <div class="status-item">
+                        <div class="status-light"></div>
+                        <span>Main Power Online</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-light"></div>
+                        <span>Navigation Systems</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-light"></div>
+                        <span>Communication Array</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-light"></div>
+                        <span>R&D Laboratory</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <div class="panel-title">System Controls</div>
+                <div class="system-controls">
+                    <button class="system-btn" onclick="runDiagnostic()">Run Diagnostic</button>
+                    <button class="system-btn" onclick="togglePower()">Power Management</button>
+                    <button class="system-btn" onclick="initiateScan()">Initiate Scan</button>
+                    <button class="system-btn" onclick="emergencyProtocol()">Emergency Protocol</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>R&D by <a href="https://c-u-l8er.link" target="_blank">C U L8er</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Create starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starfield.appendChild(star);
+            }
+        }
+
+        // Channel content data
+        const channelContent = {
+            home: {
+                title: "COMMAND INTERFACE ACTIVE",
+                content: `
+                    <div class="content-section">
+                        <h2>Mission Overview</h2>
+                        <p>WRANDTEL operational systems online. R&D business transformation laboratory ready for deployment. All systems functioning within normal parameters.</p>
+                        <p>Specialized in providing pioneering combination of resources, adaptive technology integration, and process optimization through industry expertise and delivery excellence.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Strategic Objectives</h2>
+                        <p>Drive sustainable growth and operational excellence through proven methodologies and strategic approach. Accelerate technical excellence and exploration for differentiating business outcomes.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>System Quote</h2>
+                        <p style="font-style: italic; color: #ffaa00;">"The map is not the territory, but the pattern is the path." ~ArtInt</p>
+                    </div>
+                `
+            },
+            services: {
+                title: "SERVICE PROTOCOLS ACCESSED",
+                content: `
+                    <div class="content-section">
+                        <h2>Primary Services</h2>
+                        <p>Custom software development, cloud infrastructure deployment, and digital transformation consulting. We build scalable solutions tailored to your industry's unique challenges.</p>
+                        <p>Technology strategy consulting, system integration, and process automation. Our expert team delivers results through proven agile methodologies and continuous collaboration.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Core Capabilities</h2>
+                        <p>Full-stack development, DevOps automation, data analytics, and AI/ML implementation. From concept to deployment, we accelerate innovation and deliver measurable business impact.</p>
+                    </div>
+                `
+            },
+            values: {
+                title: "CORE VALUES DATABASE",
+                content: `
+                    <div class="content-section">
+                        <h2>Fundamental Principles</h2>
+                        <p>Innovation through rigorous research and development. We push technological boundaries while maintaining the highest standards of code quality and system reliability.</p>
+                        <p>Collaborative partnerships with our clients, transparent communication, and agile delivery. We believe in building long-term relationships based on trust and consistent results.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Operational Ethics</h2>
+                        <p>Sustainable technology practices, open-source contribution, and knowledge sharing. We balance cutting-edge innovation with responsible development and ethical AI implementation.</p>
+                    </div>
+                `
+            },
+            history: {
+                title: "HISTORICAL DATA ARCHIVES",
+                content: `
+                    <div class="content-section">
+                        <h2>Legacy Systems</h2>
+                        <p>Founded as a research and development laboratory, WRANDTEL has evolved into a comprehensive technology consulting firm. Our history spans successful projects across fintech, healthcare, manufacturing, and emerging tech sectors.</p>
+                        <p>From our origins in experimental software development to our current role as transformation catalysts, we've maintained our commitment to innovation, quality, and client success.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Evolution Timeline</h2>
+                        <p>Continuous growth through strategic partnerships and cutting-edge project delivery. We've expanded our capabilities while staying true to our core mission: empowering organizations through transformative technology solutions.</p>
+                    </div>
+                `
+            },
+            laboratory: {
+                title: "IDEA FACTORY OPERATIONS",
+                content: `
+                    <div class="content-section">
+                        <h2>R&D Laboratory Status</h2>
+                        <p>Our innovation lab develops next-generation solutions in AI, blockchain, IoT, and cloud technologies. We maintain active open-source projects and contribute to the global developer community.</p>
+                        <p>Multidisciplinary team of engineers, data scientists, and domain experts. We transform complex challenges into breakthrough solutions through rapid prototyping and iterative development.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Innovation Protocols</h2>
+                        <p>Research-driven approach to emerging technologies and market opportunities. We identify trends early, develop proof-of-concepts, and scale successful innovations into production-ready solutions.</p>
+                    </div>
+                `
+            },
+            contact: {
+                title: "COMMUNICATION PROTOCOLS",
+                content: `
+                    <div class="content-section">
+                        <h2>Establish Contact</h2>
+                        <p>Ready to discuss your next project? Our team is available for consultations, technical assessments, and partnership discussions. Let's explore how we can accelerate your technology initiatives.</p>
+                        <p>Whether you need custom development, system architecture consulting, or R&D collaboration, we're here to help transform your ideas into reality.</p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Transmission Form</h2>
+                        <form class="contact-form" action="https://formspree.io/f/myzkbppo" method="POST">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit">Send Transmission</button>
+                        </form>
+                    </div>
+                    <div class="content-section">
+                        <h2>Alternative Channels</h2>
+                        <p>Multiple ways to connect: project consultations, technical workshops, partnership discussions, and emergency support. We respond to all inquiries within 24 hours and prioritize urgent requests.</p>
+                    </div>
+                `
+            }
+        };
+
+        // Update data stream
+        function updateDataStream() {
+            const dataStream = document.getElementById('dataStream');
+            const time = new Date().toLocaleTimeString();
+            const messages = [
+                'SYSTEM STATUS: NOMINAL',
+                'SCANNING FOR OPPORTUNITIES',
+                'PROCESSING DATA STREAMS',
+                'MAINTAINING HOMEOSTASIS',
+                'OPTIMIZING PERFORMANCE'
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            dataStream.textContent = `${time} - ${randomMessage}`;
+        }
+
+        // Select channel function
+        function selectChannel(channel) {
+            // Update active button
+            document.querySelectorAll('.channel-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update screen content
+            const content = channelContent[channel];
+            const screenContent = document.getElementById('screenContent');
+            screenContent.innerHTML = `
+                <div class="screen-header">${content.title}</div>
+                ${content.content}
+            `;
+        }
+
+        // System control functions
+        function runDiagnostic() {
+            const screenContent = document.getElementById('screenContent');
+            screenContent.innerHTML = `
+                <div class="screen-header">RUNNING SYSTEM DIAGNOSTIC</div>
+                <div class="content-section">
+                    <h2>Diagnostic Results</h2>
+                    <p>All systems operating within normal parameters...</p>
+                    <p>✓ Power systems: OPTIMAL</p>
+                    <p>✓ Navigation: ONLINE</p>
+                    <p>✓ Communications: ACTIVE</p>
+                    <p>✓ R&D Laboratory: OPERATIONAL</p>
+                </div>
+            `;
+        }
+
+        function togglePower() {
+            const screenContent = document.getElementById('screenContent');
+            const originalContent = screenContent.innerHTML;
+            screenContent.innerHTML = `
+                <div class="screen-header">POWER MANAGEMENT ACTIVATED</div>
+                <div class="content-section">
+                    <h2>System Status</h2>
+                    <p>Power conservation mode engaged...</p>
+                    <p>Non-essential systems shutting down...</p>
+                    <p>Restoring normal operations in 3 seconds...</p>
+                </div>
+            `;
+            document.body.style.filter = 'brightness(0.3)';
+            setTimeout(() => {
+                document.body.style.filter = '';
+                screenContent.innerHTML = originalContent;
+            }, 3000);
+        }
+
+        function initiateScan() {
+            const screenContent = document.getElementById('screenContent');
+            screenContent.innerHTML = `
+                <div class="screen-header">INITIATING ENVIRONMENTAL SCAN</div>
+                <div class="content-section">
+                    <h2>Scan Results</h2>
+                    <p>Detecting optimal business transformation opportunities...</p>
+                    <p>Analyzing market conditions and technological landscapes...</p>
+                    <p>Identifying integration points for maximum operational efficiency...</p>
+                </div>
+            `;
+        }
+
+        function emergencyProtocol() {
+            const screenContent = document.getElementById('screenContent');
+            const originalContent = screenContent.innerHTML;
+            screenContent.innerHTML = `
+                <div class="screen-header" style="color: #ff0000;">EMERGENCY PROTOCOL ENGAGED</div>
+                <div class="content-section">
+                    <h2>Alert Status</h2>
+                    <p style="color: #ffaa00;">Critical systems activated...</p>
+                    <p style="color: #ffaa00;">Evacuation protocols initiated...</p>
+                    <p style="color: #ffaa00;">Standby for further instructions...</p>
+                </div>
+            `;
+            document.body.style.background = 'radial-gradient(ellipse at center, #2e1a1a 0%, #23230f 70%, #000000 100%)';
+            let flashCount = 0;
+            const flashInterval = setInterval(() => {
+                document.body.style.filter = document.body.style.filter ? '' : 'brightness(1.5)';
+                flashCount++;
+                if (flashCount >= 6) {
+                    clearInterval(flashInterval);
+                    document.body.style.filter = '';
+                }
+            }, 200);
+            setTimeout(() => {
+                document.body.style.background = 'radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f23 70%, #000000 100%)';
+                screenContent.innerHTML = originalContent;
+            }, 4000);
+        }
+
+        // Initialize
+        createStarfield();
+        setInterval(updateDataStream, 3000);
+        updateDataStream();
+    </script>
+</body>
+</html>
