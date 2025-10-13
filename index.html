@@ -540,7 +540,7 @@
 
     <footer>
         <div class="transmission-line"></div>
-        <p>&copy; 2025 WrandTel Research & Development Laboratory</p>
+        <p>&copy; <span id="currentYear"></span> WrandTel Research & Development Laboratory</p>
         <p>https://wrand.cc | Advancing the frontiers of telespatial communication</p>
         <p class="wavelength" style="margin-top: 1rem;">~ ~ ~ END TRANSMISSION ~ ~ ~</p>
     </footer>
@@ -563,5 +563,10 @@
         </div>
         <br />
     </div>
+    
+    <script>
+        // Set current year dynamically
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
