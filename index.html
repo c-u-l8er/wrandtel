@@ -212,6 +212,21 @@
                 color: var(--text-primary);
             }
 
+            .node-subtitle {
+                font-family: "Space Mono", monospace;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: #ccc;
+            }
+
+            .node-subtitle a {
+                color: #ccc;
+            }
+
+            .node-subtitle a:hover {
+                color: #fff;
+            }
+
             .node-category {
                 font-size: 0.6rem;
                 text-transform: uppercase;
@@ -323,6 +338,10 @@
 
             .hero-node .node-title {
                 font-size: 1.8rem;
+                margin-bottom: 0;
+            }
+
+            .hero-node .node-subtitle {
                 margin-bottom: 8px;
             }
 
@@ -951,7 +970,13 @@
                     id="node-hero"
                     style="left: 4790px; top: 3350px"
                 >
-                    <div class="node-title">WrandTel R&D</div>
+                    <div class="node-title">WrandTel</div>
+                    <div class="node-subtitle">
+                        R&D by
+                        <a href="https://c-u-l8er.link" target="_blank"
+                            >C U L8er</a
+                        >
+                    </div>
                     <div class="hero-subtitle">
                         Research & development notes on programming language
                         design patterns, type systems, memory models, and
