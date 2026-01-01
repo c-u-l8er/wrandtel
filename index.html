@@ -1,572 +1,2122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WrandTel - Research & Development Laboratory</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WrandTel R&D Laboratory</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.3/dist/panzoom.min.js"></script>
+        <style>
+            :root {
+                --pipe-width: 8px;
+                --pipe-color: #4a9eff;
+                --pipe-glow: rgba(74, 158, 255, 0.5);
+                --pipe-inner: #1a3a5c;
+                --bg-primary: #0a0e14;
+                --bg-secondary: #0d1218;
+                --text-primary: #e6edf3;
+                --text-muted: #7d8590;
+                --accent-cyan: #00d9ff;
+                --accent-orange: #ff6b35;
+                --accent-green: #3fb950;
+                --accent-purple: #a371f7;
+                --accent-pink: #f778ba;
+                --accent-yellow: #d4a72c;
+                --node-bg: rgba(13, 18, 24, 0.95);
+                --border-subtle: rgba(74, 158, 255, 0.2);
+            }
 
-        :root {
-            --brown-dark: #3d2817;
-            --brown-medium: #5c4033;
-            --brown-light: #8b6f47;
-            --brown-lighter: #a88c69;
-            --cream: #f4e8d8;
-            --amber: #ff8c00;
-            --signal-green: #00ff41;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(180deg, var(--brown-dark) 0%, #2a1810 100%);
-            color: var(--cream);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+            body {
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                font-family: "IBM Plex Mono", monospace;
+                overflow: hidden;
+                width: 100vw;
+                height: 100vh;
+            }
 
-        .scan-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.3;
-        }
+            #canvas-container {
+                width: 100%;
+                height: 100%;
+                cursor: grab;
+                background:
+                    radial-gradient(
+                        circle at 50% 50%,
+                        rgba(74, 158, 255, 0.03) 0%,
+                        transparent 50%
+                    ),
+                    var(--bg-primary);
+            }
 
-        .tv-border {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 20px solid var(--brown-medium);
-            border-radius: 30px;
-            pointer-events: none;
-            z-index: 999;
-            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-        }
+            #canvas-container:active {
+                cursor: grabbing;
+            }
 
-        header {
-            background: linear-gradient(180deg, var(--brown-medium) 0%, var(--brown-dark) 100%);
-            border-bottom: 3px solid var(--brown-light);
-            padding: 2rem 2rem 1rem;
-            position: relative;
-        }
+            #scene {
+                position: relative;
+                width: 10000px;
+                height: 8000px;
+                transform-origin: 0 0;
+                background:
+                    linear-gradient(
+                        rgba(74, 158, 255, 0.06) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(74, 158, 255, 0.06) 1px,
+                        transparent 1px
+                    );
+                background-size: 80px 80px;
+            }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
+            #pipe-layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
 
-        .tv-icon {
-            width: 80px;
-            height: 60px;
-            background: var(--brown-dark);
-            border: 3px solid var(--brown-light);
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
+            .pipe {
+                fill: none;
+                stroke: var(--pipe-color);
+                stroke-width: var(--pipe-width);
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                filter: drop-shadow(0 0 4px var(--pipe-glow));
+            }
 
-        .tv-screen {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 12px;
-            background: linear-gradient(180deg, var(--signal-green) 0%, #00cc33 100%);
-            border-radius: 3px;
-            animation: flicker 3s infinite;
-        }
+            .pipe-inner {
+                fill: none;
+                stroke: var(--pipe-inner);
+                stroke-width: calc(var(--pipe-width) - 3px);
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
 
-        .tv-stand {
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 8px;
-            background: var(--brown-light);
-            border-radius: 2px;
-        }
+            .pipe-flow {
+                fill: none;
+                stroke: var(--accent-cyan);
+                stroke-width: 2px;
+                stroke-linecap: round;
+                stroke-dasharray: 12 24;
+                animation: flow 2s linear infinite;
+                opacity: 0.6;
+            }
 
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
-        }
+            .pipe-orange {
+                stroke: var(--accent-orange);
+                filter: drop-shadow(0 0 4px rgba(255, 107, 53, 0.5));
+            }
+            .pipe-green {
+                stroke: var(--accent-green);
+                filter: drop-shadow(0 0 4px rgba(63, 185, 80, 0.5));
+            }
+            .pipe-purple {
+                stroke: var(--accent-purple);
+                filter: drop-shadow(0 0 4px rgba(163, 113, 247, 0.5));
+            }
+            .pipe-pink {
+                stroke: var(--accent-pink);
+                filter: drop-shadow(0 0 4px rgba(247, 120, 186, 0.5));
+            }
+            .pipe-yellow {
+                stroke: var(--accent-yellow);
+                filter: drop-shadow(0 0 4px rgba(212, 167, 44, 0.5));
+            }
 
-        h1 {
-            font-size: 3rem;
-            color: var(--amber);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            letter-spacing: 2px;
-        }
+            .flow-orange {
+                stroke: var(--accent-orange);
+            }
+            .flow-green {
+                stroke: var(--accent-green);
+            }
+            .flow-purple {
+                stroke: var(--accent-purple);
+            }
+            .flow-pink {
+                stroke: var(--accent-pink);
+            }
+            .flow-yellow {
+                stroke: var(--accent-yellow);
+            }
 
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--brown-lighter);
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
+            @keyframes flow {
+                0% {
+                    stroke-dashoffset: 0;
+                }
+                100% {
+                    stroke-dashoffset: -36;
+                }
+            }
 
-        nav {
-            background: var(--brown-dark);
-            padding: 1rem 2rem;
-            border-bottom: 2px solid var(--brown-light);
-        }
+            /* Content Nodes */
+            .content-node {
+                position: absolute;
+                background: var(--node-bg);
+                border: 1px solid var(--border-subtle);
+                border-radius: 12px;
+                padding: 20px;
+                width: 320px;
+                backdrop-filter: blur(20px);
+                transition: all 0.3s ease;
+            }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+            .content-node:hover {
+                border-color: var(--pipe-color);
+                box-shadow: 0 0 30px var(--pipe-glow);
+            }
 
-        nav a {
-            color: var(--cream);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border: 1px solid transparent;
-        }
+            .content-node.highlight {
+                border-color: var(--accent-cyan);
+                box-shadow: 0 0 50px rgba(0, 217, 255, 0.4);
+            }
 
-        nav a:hover {
-            color: var(--amber);
-            border: 1px solid var(--brown-light);
-            background: rgba(139, 111, 71, 0.2);
-        }
+            .node-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 12px;
+            }
 
-        main {
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+            .node-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                background: rgba(74, 158, 255, 0.1);
+                border: 1px solid var(--border-subtle);
+                flex-shrink: 0;
+            }
 
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
-            background: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-dark) 100%);
-            border-radius: 10px;
-            margin-bottom: 3rem;
-            border: 2px solid var(--brown-light);
-            position: relative;
-            overflow: hidden;
-        }
+            .node-title {
+                font-family: "Space Mono", monospace;
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: var(--text-primary);
+            }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(139, 111, 71, 0.03) 10px,
-                rgba(139, 111, 71, 0.03) 20px
-            );
-            animation: slide 20s linear infinite;
-        }
+            .node-category {
+                font-size: 0.6rem;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--accent-cyan);
+                margin-top: 2px;
+            }
 
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
+            .node-content {
+                font-size: 0.78rem;
+                line-height: 1.6;
+                color: var(--text-muted);
+                margin-bottom: 12px;
+            }
 
-        .hero h2 {
-            font-size: 2.5rem;
-            color: var(--signal-green);
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-        }
+            .node-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                margin-bottom: 14px;
+            }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--cream);
-            position: relative;
-            z-index: 1;
-        }
+            .tag {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+                border-radius: 3px;
+                background: rgba(74, 158, 255, 0.1);
+                color: var(--pipe-color);
+                border: 1px solid var(--border-subtle);
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
 
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
+            /* Connection Ports */
+            .node-ports {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                padding-top: 12px;
+                border-top: 1px solid var(--border-subtle);
+            }
 
-        .research-card {
-            background: var(--brown-medium);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid var(--brown-light);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
+            .port {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 5px 10px;
+                border-radius: 6px;
+                background: rgba(74, 158, 255, 0.08);
+                border: 1px solid var(--border-subtle);
+                cursor: pointer;
+                transition: all 0.2s;
+                font-size: 0.65rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
 
-        .research-card::before {
-            content: '◆';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: var(--amber);
-            font-size: 1.5rem;
-            opacity: 0.3;
-        }
+            .port:hover {
+                background: rgba(74, 158, 255, 0.2);
+                border-color: var(--pipe-color);
+                color: var(--text-primary);
+                transform: scale(1.05);
+            }
 
-        .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: var(--amber);
-        }
+            .port::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--port-dot, var(--pipe-color));
+                box-shadow: 0 0 6px var(--port-glow, var(--pipe-glow));
+            }
 
-        .research-card h3 {
-            color: var(--amber);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+            /* Default palette values (can be overridden per-port via JS) */
+            .port.orange {
+                --port-dot: var(--accent-orange);
+                --port-glow: rgba(255, 107, 53, 0.6);
+            }
+            .port.green {
+                --port-dot: var(--accent-green);
+                --port-glow: rgba(63, 185, 80, 0.6);
+            }
+            .port.purple {
+                --port-dot: var(--accent-purple);
+                --port-glow: rgba(163, 113, 247, 0.6);
+            }
+            .port.pink {
+                --port-dot: var(--accent-pink);
+                --port-glow: rgba(247, 120, 186, 0.6);
+            }
+            .port.yellow {
+                --port-dot: var(--accent-yellow);
+                --port-glow: rgba(212, 167, 44, 0.6);
+            }
 
-        .research-card p {
-            color: var(--cream);
-            line-height: 1.8;
-        }
+            /* Hero Node */
+            .hero-node {
+                width: 420px;
+                text-align: center;
+                background: linear-gradient(
+                    135deg,
+                    var(--node-bg),
+                    rgba(74, 158, 255, 0.08)
+                );
+                border-width: 2px;
+                padding: 28px;
+            }
 
-        .signal-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: var(--signal-green);
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px var(--signal-green);
-        }
+            .hero-node .node-title {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+            .hero-subtitle {
+                font-size: 0.82rem;
+                color: var(--text-muted);
+                margin-bottom: 16px;
+                line-height: 1.55;
+            }
 
-        .lab-status {
-            background: var(--brown-dark);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid var(--brown-light);
-            margin: 3rem 0;
-        }
+            .transmission-indicator {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.65rem;
+                color: var(--accent-green);
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                margin-bottom: 16px;
+            }
 
-        .lab-status h3 {
-            color: var(--amber);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
+            .transmission-indicator::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--accent-green);
+                animation: blink 1.5s infinite;
+            }
 
-        .status-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            background: rgba(92, 64, 51, 0.3);
-            border-left: 4px solid var(--signal-green);
-        }
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.3;
+                }
+            }
 
-        footer {
-            background: var(--brown-dark);
-            border-top: 3px solid var(--brown-light);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
+            /* Color Variants */
+            .node-orange .node-icon {
+                background: rgba(255, 107, 53, 0.15);
+                border-color: rgba(255, 107, 53, 0.3);
+            }
+            .node-orange .node-category {
+                color: var(--accent-orange);
+            }
+            .node-orange .tag {
+                background: rgba(255, 107, 53, 0.1);
+                color: var(--accent-orange);
+                border-color: rgba(255, 107, 53, 0.3);
+            }
+            .node-orange:hover {
+                border-color: var(--accent-orange);
+                box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+            }
 
-        footer p {
-            color: var(--brown-lighter);
-            font-size: 0.9rem;
-        }
+            .node-green .node-icon {
+                background: rgba(63, 185, 80, 0.15);
+                border-color: rgba(63, 185, 80, 0.3);
+            }
+            .node-green .node-category {
+                color: var(--accent-green);
+            }
+            .node-green .tag {
+                background: rgba(63, 185, 80, 0.1);
+                color: var(--accent-green);
+                border-color: rgba(63, 185, 80, 0.3);
+            }
+            .node-green:hover {
+                border-color: var(--accent-green);
+                box-shadow: 0 0 30px rgba(63, 185, 80, 0.3);
+            }
 
-        .transmission-line {
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                var(--amber) 50%, 
-                transparent 100%);
-            margin: 2rem 0;
-            animation: transmit 3s infinite;
-        }
+            .node-purple .node-icon {
+                background: rgba(163, 113, 247, 0.15);
+                border-color: rgba(163, 113, 247, 0.3);
+            }
+            .node-purple .node-category {
+                color: var(--accent-purple);
+            }
+            .node-purple .tag {
+                background: rgba(163, 113, 247, 0.1);
+                color: var(--accent-purple);
+                border-color: rgba(163, 113, 247, 0.3);
+            }
+            .node-purple:hover {
+                border-color: var(--accent-purple);
+                box-shadow: 0 0 30px rgba(163, 113, 247, 0.3);
+            }
 
-        @keyframes transmit {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
+            .node-pink .node-icon {
+                background: rgba(247, 120, 186, 0.15);
+                border-color: rgba(247, 120, 186, 0.3);
+            }
+            .node-pink .node-category {
+                color: var(--accent-pink);
+            }
+            .node-pink .tag {
+                background: rgba(247, 120, 186, 0.1);
+                color: var(--accent-pink);
+                border-color: rgba(247, 120, 186, 0.3);
+            }
+            .node-pink:hover {
+                border-color: var(--accent-pink);
+                box-shadow: 0 0 30px rgba(247, 120, 186, 0.3);
+            }
 
-        .wavelength {
-            font-family: 'Courier New', monospace;
-            color: var(--signal-green);
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-        }
+            .node-yellow .node-icon {
+                background: rgba(212, 167, 44, 0.15);
+                border-color: rgba(212, 167, 44, 0.3);
+            }
+            .node-yellow .node-category {
+                color: var(--accent-yellow);
+            }
+            .node-yellow .tag {
+                background: rgba(212, 167, 44, 0.1);
+                color: var(--accent-yellow);
+                border-color: rgba(212, 167, 44, 0.3);
+            }
+            .node-yellow:hover {
+                border-color: var(--accent-yellow);
+                box-shadow: 0 0 30px rgba(212, 167, 44, 0.3);
+            }
 
-        .contact-form {
-            margin-top: 1.5rem;
-        }
+            /* Fixed UI */
+            .ui-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: none;
+                z-index: 1000;
+            }
 
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            background: rgba(61, 40, 23, 0.7);
-            border: 2px solid var(--brown-light);
-            color: var(--cream);
-            font-family: 'Courier New', monospace;
-            border-radius: 5px;
-            box-sizing: border-box;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+            .header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 18px 28px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: linear-gradient(
+                    to bottom,
+                    var(--bg-primary),
+                    transparent
+                );
+                pointer-events: auto;
+            }
 
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--amber);
-            box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
-        }
+            .logo {
+                font-family: "Space Mono", monospace;
+                font-size: 1.2rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                color: var(--pipe-color);
+                text-shadow: 0 0 20px var(--pipe-glow);
+            }
 
-        .contact-form textarea {
-            height: 120px;
-            resize: vertical;
-        }
+            .logo span {
+                color: var(--text-muted);
+                font-weight: 400;
+            }
 
-        .contact-form button {
-            background: linear-gradient(145deg, var(--brown-medium) 0%, var(--brown-dark) 100%);
-            border: 2px solid var(--amber);
-            color: var(--cream);
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+            .controls {
+                position: absolute;
+                bottom: 28px;
+                left: 28px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                pointer-events: auto;
+            }
 
-        .contact-form button:hover {
-            background: linear-gradient(145deg, var(--brown-dark) 0%, var(--brown-medium) 100%);
-            box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-            transform: translateY(-2px);
-        }
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                background: var(--node-bg);
+                border: 1px solid var(--border-subtle);
+                color: var(--text-primary);
+                font-size: 1.1rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+                backdrop-filter: blur(10px);
+            }
 
-        .contact-form button::before {
-            content: "▶";
-            color: var(--signal-green);
-        }
-    </style>
-</head>
-<body>
-    <div class="scan-lines"></div>
-    <div class="tv-border"></div>
+            .control-btn:hover {
+                border-color: var(--pipe-color);
+                background: rgba(74, 158, 255, 0.1);
+            }
 
-    <header>
-        <div class="logo-container">
-            <div class="tv-icon">
-                <div class="tv-screen"></div>
-                <div class="tv-stand"></div>
-            </div>
-            <div>
-                <h1>WrandTel</h1>
-                <p class="tagline">Research & Development Laboratory</p>
-                <p class="wavelength">~ ~ ~ BEGIN TRANSMISSION ~ ~ ~</p>
-            </div>
-        </div>
-    </header>
+            .minimap {
+                position: absolute;
+                bottom: 28px;
+                right: 28px;
+                width: 200px;
+                height: 160px;
+                background: var(--node-bg);
+                border: 1px solid var(--border-subtle);
+                border-radius: 10px;
+                overflow: hidden;
+                pointer-events: auto;
+                backdrop-filter: blur(10px);
+            }
 
-    <nav>
-        <ul>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#lab">Laboratory</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+            .minimap-content {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
 
-    <main>
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <div class="research-card" style="display: inline-block; background: var(--amber); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; border-radius: 30px; padding: 0.5rem 1.5rem;">
-                <div style="font-size: 1.2rem; color: var(--brown-dark); font-family: 'Courier New', monospace; font-weight: bold; letter-spacing: 1px;">
-                    R&D by <a href="https://c-u-l8er.link" target="_blank" style="color: var(--brown-dark); text-decoration: none; transition: color 0.3s; font-weight: bold;">C U L8er</a>
-                </div>
-            </div>
-        </div>
-        
-        <section class="hero">
-            <h2>Advancing Teledynamics Research</h2>
-            <p>Pioneering research in telecomputational, telespatial, and televisual systems</p>
-        </section>
+            .minimap-viewport {
+                position: absolute;
+                border: 2px solid var(--pipe-color);
+                background: rgba(74, 158, 255, 0.1);
+                border-radius: 2px;
+                pointer-events: none;
+            }
 
-        <div class="transmission-line"></div>
+            .minimap-dot {
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: var(--pipe-color);
+            }
 
-        <section id="research">
-            <h2 style="color: var(--amber); font-size: 2rem; margin-bottom: 2rem;">
-                <span class="signal-indicator"></span>Current Research Areas
-            </h2>
-            
-            <div class="research-grid">
-                <div class="research-card">
-                    <h3>Broadcast Signal Processing</h3>
-                    <p>Developing advanced algorithms for multi-dimensional signal compression and transmission across telespatial networks. Our work builds on foundational telecommunications theory to enable next-generation broadcasting.</p>
-                </div>
+            .minimap-dot.orange {
+                background: var(--accent-orange);
+            }
+            .minimap-dot.green {
+                background: var(--accent-green);
+            }
+            .minimap-dot.purple {
+                background: var(--accent-purple);
+            }
+            .minimap-dot.pink {
+                background: var(--accent-pink);
+            }
+            .minimap-dot.yellow {
+                background: var(--accent-yellow);
+            }
 
-                <div class="research-card">
-                    <h3>Spatial Television Architecture</h3>
-                    <p>Exploring novel frameworks for volumetric display systems that transcend traditional screen-based paradigms. Research includes holographic projection and immersive broadcast environments.</p>
-                </div>
+            .help-text {
+                position: absolute;
+                top: 18px;
+                right: 28px;
+                font-size: 0.65rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                pointer-events: auto;
+            }
 
-                <div class="research-card">
-                    <h3>Quantum Channel Theory</h3>
-                    <p>Investigating quantum entanglement applications for instantaneous information transfer across spatial broadcast networks. Theoretical foundations for post-classical telecommunications.</p>
-                </div>
+            .help-text kbd {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-subtle);
+                border-radius: 3px;
+                padding: 2px 5px;
+                margin: 0 2px;
+            }
 
-                <div class="research-card">
-                    <h3>Neural Broadcasting</h3>
-                    <p>Pioneering direct neural interface protocols for television and media consumption. Developing safe, ethical frameworks for consciousness-integrated broadcasting systems.</p>
-                </div>
+            .zoom-level {
+                position: absolute;
+                bottom: 32px;
+                left: 80px;
+                font-size: 0.7rem;
+                color: var(--text-muted);
+                font-family: "JetBrains Mono", monospace;
+                pointer-events: none;
+            }
 
-                <div class="research-card">
-                    <h3>Temporal Signal Analysis</h3>
-                    <p>Mathematical modeling of time-variant broadcast phenomena and their applications in predictive transmission systems. Advancing Shannon-Nyquist theories for temporal domains.</p>
-                </div>
+            /* Navigation indicator */
+            .nav-indicator {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 12px 24px;
+                background: var(--node-bg);
+                border: 1px solid var(--pipe-color);
+                border-radius: 8px;
+                font-size: 0.75rem;
+                color: var(--text-primary);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                opacity: 0;
+                transition: opacity 0.3s;
+                pointer-events: none;
+                z-index: 2000;
+            }
 
-                <div class="research-card">
-                    <h3>Distributed Consciousness Networks</h3>
-                    <p>Theoretical and applied research in multi-node awareness systems for collaborative viewing experiences. Exploring the boundaries of shared perception technologies.</p>
-                </div>
-            </div>
-        </section>
+            .nav-indicator.show {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="canvas-container">
+            <div id="scene">
+                <!-- SVG Pipe Layer -->
+                <svg
+                    id="pipe-layer"
+                    viewBox="0 0 10000 8000"
+                    preserveAspectRatio="xMidYMid slice"
+                >
+                    <!-- Hero to Patterns -->
+                    <path
+                        class="pipe"
+                        d="M5000 3350 L5000 3100 L3800 3100 L3800 2600 L3200 2600"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M5000 3350 L5000 3100 L3800 3100 L3800 2600 L3200 2600"
+                    />
+                    <path
+                        class="pipe-flow"
+                        d="M5000 3350 L5000 3100 L3800 3100 L3800 2600 L3200 2600"
+                    />
 
-        <div class="transmission-line"></div>
+                    <!-- Hero to Types -->
+                    <path
+                        class="pipe pipe-orange"
+                        d="M5000 3350 L5000 3100 L6200 3100 L6200 2600 L6800 2600"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M5000 3350 L5000 3100 L6200 3100 L6200 2600 L6800 2600"
+                    />
+                    <path
+                        class="pipe-flow flow-orange"
+                        d="M5000 3350 L5000 3100 L6200 3100 L6200 2600 L6800 2600"
+                        style="animation-delay: -0.3s"
+                    />
 
-        <section id="projects">
-            <h2 style="color: var(--amber); font-size: 2rem; margin-bottom: 2rem;">
-                <span class="signal-indicator"></span>Active Projects
-            </h2>
-            
-            <div class="research-grid">
-                <a href="https://webhost.systems" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="research-card">
-                        <h3>WebHost.Systems</h3>
-                        <p>Production-ready GPS tracking infrastructure with offline-first sync, TimescaleDB, and PostGIS. Deploy real-time fleet tracking in minutes with multi-tenant safety and auto-generated APIs.</p>
-                        <p style="margin-top: 1rem; color: var(--warning);">STATUS: 🚧 IN DEVELOPMENT</p>
+                    <!-- Hero to Memory -->
+                    <path
+                        class="pipe pipe-green"
+                        d="M5000 3750 L5000 4100 L3600 4100 L3600 4600 L2800 4600"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M5000 3750 L5000 4100 L3600 4100 L3600 4600 L2800 4600"
+                    />
+                    <path
+                        class="pipe-flow flow-green"
+                        d="M5000 3750 L5000 4100 L3600 4100 L3600 4600 L2800 4600"
+                        style="animation-delay: -0.5s"
+                    />
+
+                    <!-- Hero to Concurrency -->
+                    <path
+                        class="pipe pipe-purple"
+                        d="M5000 3750 L5000 4100 L6400 4100 L6400 4600 L7200 4600"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M5000 3750 L5000 4100 L6400 4100 L6400 4600 L7200 4600"
+                    />
+                    <path
+                        class="pipe-flow flow-purple"
+                        d="M5000 3750 L5000 4100 L6400 4100 L6400 4600 L7200 4600"
+                        style="animation-delay: -0.7s"
+                    />
+
+                    <!-- Patterns to Semantics -->
+                    <path class="pipe" d="M2900 2400 L2900 1800 L2200 1800" />
+                    <path
+                        class="pipe-inner"
+                        d="M2900 2400 L2900 1800 L2200 1800"
+                    />
+                    <path
+                        class="pipe-flow"
+                        d="M2900 2400 L2900 1800 L2200 1800"
+                        style="animation-delay: -1s"
+                    />
+
+                    <!-- Patterns to Syntax -->
+                    <path
+                        class="pipe pipe-pink"
+                        d="M2900 2800 L2900 3400 L2400 3400 L2400 4000 L1800 4000"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M2900 2800 L2900 3400 L2400 3400 L2400 4000 L1800 4000"
+                    />
+                    <path
+                        class="pipe-flow flow-pink"
+                        d="M2900 2800 L2900 3400 L2400 3400 L2400 4000 L1800 4000"
+                        style="animation-delay: -1.2s"
+                    />
+
+                    <!-- Types to Verification -->
+                    <path
+                        class="pipe pipe-orange"
+                        d="M7100 2400 L7100 1800 L7800 1800"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M7100 2400 L7100 1800 L7800 1800"
+                    />
+                    <path
+                        class="pipe-flow flow-orange"
+                        d="M7100 2400 L7100 1800 L7800 1800"
+                        style="animation-delay: -1.4s"
+                    />
+
+                    <!-- Types to Compiler -->
+                    <path
+                        class="pipe pipe-yellow"
+                        d="M7100 2800 L7100 3400 L7600 3400 L7600 4000 L8200 4000"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M7100 2800 L7100 3400 L7600 3400 L7600 4000 L8200 4000"
+                    />
+                    <path
+                        class="pipe-flow flow-yellow"
+                        d="M7100 2800 L7100 3400 L7600 3400 L7600 4000 L8200 4000"
+                        style="animation-delay: -1.6s"
+                    />
+
+                    <!-- Memory to Runtime -->
+                    <path
+                        class="pipe pipe-green"
+                        d="M2500 4800 L2500 5400 L1900 5400 L1900 5900"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M2500 4800 L2500 5400 L1900 5400 L1900 5900"
+                    />
+                    <path
+                        class="pipe-flow flow-green"
+                        d="M2500 4800 L2500 5400 L1900 5400 L1900 5900"
+                        style="animation-delay: -1.8s"
+                    />
+
+                    <!-- Memory to Stdlib -->
+                    <path
+                        class="pipe pipe-pink"
+                        d="M2500 4800 L2500 5200 L3200 5200 L3200 5700 L3800 5700"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M2500 4800 L2500 5200 L3200 5200 L3200 5700 L3800 5700"
+                    />
+                    <path
+                        class="pipe-flow flow-pink"
+                        d="M2500 4800 L2500 5200 L3200 5200 L3200 5700 L3800 5700"
+                        style="animation-delay: -2s"
+                    />
+
+                    <!-- Concurrency to FFI -->
+                    <path
+                        class="pipe pipe-purple"
+                        d="M7500 4800 L7500 5400 L8100 5400 L8100 5900"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M7500 4800 L7500 5400 L8100 5400 L8100 5900"
+                    />
+                    <path
+                        class="pipe-flow flow-purple"
+                        d="M7500 4800 L7500 5400 L8100 5400 L8100 5900"
+                        style="animation-delay: -2.2s"
+                    />
+
+                    <!-- Concurrency to Tooling -->
+                    <path
+                        class="pipe pipe-yellow"
+                        d="M7500 4800 L7500 5200 L6800 5200 L6800 5700 L6200 5700"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M7500 4800 L7500 5200 L6800 5200 L6800 5700 L6200 5700"
+                    />
+                    <path
+                        class="pipe-flow flow-yellow"
+                        d="M7500 4800 L7500 5200 L6800 5200 L6800 5700 L6200 5700"
+                        style="animation-delay: -2.4s"
+                    />
+
+                    <!-- Syntax to Stdlib (cross connection) -->
+                    <path
+                        class="pipe pipe-pink"
+                        d="M1500 4200 L1500 5000 L3000 5000 L3000 5500 L3800 5500"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M1500 4200 L1500 5000 L3000 5000 L3000 5500 L3800 5500"
+                    />
+                    <path
+                        class="pipe-flow flow-pink"
+                        d="M1500 4200 L1500 5000 L3000 5000 L3000 5500 L3800 5500"
+                        style="animation-delay: -2.6s"
+                    />
+
+                    <!-- Compiler to Tooling (cross connection) -->
+                    <path
+                        class="pipe pipe-yellow"
+                        d="M8500 4200 L8500 5000 L7000 5000 L7000 5500 L6200 5500"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M8500 4200 L8500 5000 L7000 5000 L7000 5500 L6200 5500"
+                    />
+                    <path
+                        class="pipe-flow flow-yellow"
+                        d="M8500 4200 L8500 5000 L7000 5000 L7000 5500 L6200 5500"
+                        style="animation-delay: -2.8s"
+                    />
+
+                    <!-- Semantics to Verification (top cross) -->
+                    <path
+                        class="pipe"
+                        d="M2200 1600 L2200 1200 L5000 1200 L5000 1400 L7800 1400 L7800 1600"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M2200 1600 L2200 1200 L5000 1200 L5000 1400 L7800 1400 L7800 1600"
+                    />
+                    <path
+                        class="pipe-flow"
+                        d="M2200 1600 L2200 1200 L5000 1200 L5000 1400 L7800 1400 L7800 1600"
+                        style="animation-delay: -3s"
+                    />
+
+                    <!-- Runtime to FFI (bottom cross) -->
+                    <path
+                        class="pipe pipe-green"
+                        d="M1900 6300 L1900 6700 L5000 6700 L5000 6500 L8100 6500 L8100 6300"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M1900 6300 L1900 6700 L5000 6700 L5000 6500 L8100 6500 L8100 6300"
+                    />
+                    <path
+                        class="pipe-flow flow-green"
+                        d="M1900 6300 L1900 6700 L5000 6700 L5000 6500 L8100 6500 L8100 6300"
+                        style="animation-delay: -3.2s"
+                    />
+
+                    <!-- Meta center connections -->
+                    <path class="pipe" d="M5000 3750 L5000 4800" />
+                    <path class="pipe-inner" d="M5000 3750 L5000 4800" />
+                    <path
+                        class="pipe-flow"
+                        d="M5000 3750 L5000 4800"
+                        style="animation-delay: -3.4s"
+                    />
+
+                    <!-- Meta to Stdlib -->
+                    <path
+                        class="pipe pipe-pink"
+                        d="M4800 5000 L4300 5000 L4300 5500 L4100 5500"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M4800 5000 L4300 5000 L4300 5500 L4100 5500"
+                    />
+                    <path
+                        class="pipe-flow flow-pink"
+                        d="M4800 5000 L4300 5000 L4300 5500 L4100 5500"
+                        style="animation-delay: -3.6s"
+                    />
+
+                    <!-- Meta to Tooling -->
+                    <path
+                        class="pipe pipe-yellow"
+                        d="M5200 5000 L5700 5000 L5700 5500 L5900 5500"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M5200 5000 L5700 5000 L5700 5500 L5900 5500"
+                    />
+                    <path
+                        class="pipe-flow flow-yellow"
+                        d="M5200 5000 L5700 5000 L5700 5500 L5900 5500"
+                        style="animation-delay: -3.8s"
+                    />
+
+                    <!-- Patterns to Types (horizontal cross) -->
+                    <path
+                        class="pipe pipe-orange"
+                        d="M3200 2500 L3600 2500 L3600 2200 L6400 2200 L6400 2500 L6800 2500"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M3200 2500 L3600 2500 L3600 2200 L6400 2200 L6400 2500 L6800 2500"
+                    />
+                    <path
+                        class="pipe-flow flow-orange"
+                        d="M3200 2500 L3600 2500 L3600 2200 L6400 2200 L6400 2500 L6800 2500"
+                        style="animation-delay: -4s"
+                    />
+
+                    <!-- Memory to Concurrency (horizontal cross) -->
+                    <path
+                        class="pipe pipe-purple"
+                        d="M2800 4700 L3400 4700 L3400 4400 L6600 4400 L6600 4700 L7200 4700"
+                    />
+                    <path
+                        class="pipe-inner"
+                        d="M2800 4700 L3400 4700 L3400 4400 L6600 4400 L6600 4700 L7200 4700"
+                    />
+                    <path
+                        class="pipe-flow flow-purple"
+                        d="M2800 4700 L3400 4700 L3400 4400 L6600 4400 L6600 4700 L7200 4700"
+                        style="animation-delay: -4.2s"
+                    />
+                </svg>
+
+                <!-- NODES -->
+
+                <!-- Hero -->
+                <div
+                    class="content-node hero-node"
+                    id="node-hero"
+                    style="left: 4790px; top: 3350px"
+                >
+                    <div class="node-title">WrandTel R&D</div>
+                    <div class="hero-subtitle">
+                        Research & development notes on programming language
+                        design patterns, type systems, memory models, and
+                        compiler architecture.
                     </div>
-                </a>
-            </div>
-        </section>
+                    <div class="transmission-indicator">
+                        <span>System Online</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-patterns">
+                            Patterns
+                        </div>
+                        <div class="port orange" data-target="node-types">
+                            Types
+                        </div>
+                        <div class="port green" data-target="node-memory">
+                            Memory
+                        </div>
+                        <div class="port purple" data-target="node-concurrency">
+                            Concurrency
+                        </div>
+                        <div class="port" data-target="node-meta">Meta</div>
+                    </div>
+                </div>
 
-        <div class="transmission-line"></div>
+                <!-- Design Patterns -->
+                <div
+                    class="content-node"
+                    id="node-patterns"
+                    style="left: 2580px; top: 2400px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">◇</div>
+                        <div>
+                            <div class="node-title">Design Patterns</div>
+                            <div class="node-category">Structural Research</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Exploration of compositional patterns for language
+                        primitives. Investigating algebraic effects,
+                        continuation-passing styles.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Monads</span>
+                        <span class="tag">Effects</span>
+                        <span class="tag">CPS</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-hero">Hub</div>
+                        <div class="port" data-target="node-semantics">
+                            Semantics
+                        </div>
+                        <div class="port pink" data-target="node-syntax">
+                            Syntax
+                        </div>
+                        <div class="port orange" data-target="node-types">
+                            Types
+                        </div>
+                    </div>
+                </div>
 
-        <section id="lab" class="lab-status">
-            <h3>Laboratory Status</h3>
-            <div class="status-item">
-                <span class="signal-indicator"></span>
-                <span>Experimental Chamber A: ACTIVE - Spatial calibration in progress</span>
-            </div>
-            <div class="status-item">
-                <span class="signal-indicator"></span>
-                <span>Quantum Antenna Array: ONLINE - Entanglement pair generation nominal</span>
-            </div>
-            <div class="status-item">
-                <span class="signal-indicator"></span>
-                <span>Broadcast Simulation Grid: OPERATIONAL - 10^12 nodes synchronized</span>
-            </div>
-            <div class="status-item">
-                <span class="signal-indicator"></span>
-                <span>Neural Interface Lab: ACTIVE - Safety protocols engaged</span>
-            </div>
-        </section>
+                <!-- Type Systems -->
+                <div
+                    class="content-node node-orange"
+                    id="node-types"
+                    style="left: 6800px; top: 2400px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">τ</div>
+                        <div>
+                            <div class="node-title">Type Systems</div>
+                            <div class="node-category">Type Theory</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Research into dependent types, refinement types, and
+                        gradual typing. Building bridges between static
+                        guarantees and runtime flexibility.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Dependent</span>
+                        <span class="tag">Refinement</span>
+                        <span class="tag">Gradual</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-hero">Hub</div>
+                        <div
+                            class="port orange"
+                            data-target="node-verification"
+                        >
+                            Verification
+                        </div>
+                        <div class="port yellow" data-target="node-compiler">
+                            Compiler
+                        </div>
+                        <div class="port" data-target="node-patterns">
+                            Patterns
+                        </div>
+                    </div>
+                </div>
 
-        <div class="transmission-line"></div>
+                <!-- Memory Models -->
+                <div
+                    class="content-node node-green"
+                    id="node-memory"
+                    style="left: 2180px; top: 4400px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">◈</div>
+                        <div>
+                            <div class="node-title">Memory Models</div>
+                            <div class="node-category">Systems Research</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Investigating ownership semantics, region-based
+                        allocation, and novel garbage collection strategies.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Ownership</span>
+                        <span class="tag">Regions</span>
+                        <span class="tag">GC</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-hero">Hub</div>
+                        <div class="port green" data-target="node-runtime">
+                            Runtime
+                        </div>
+                        <div class="port pink" data-target="node-stdlib">
+                            Stdlib
+                        </div>
+                        <div class="port purple" data-target="node-concurrency">
+                            Concurrency
+                        </div>
+                    </div>
+                </div>
 
-        <section id="publications">
-            <h2 style="color: var(--amber); font-size: 2rem; margin-bottom: 2rem;">Recent Publications</h2>
-            <div class="research-card">
-                <h3>On the Fundamental Limits of Telespatial Bandwidth</h3>
-                <p><em>Journal of Advanced Telecommunications, 2025</em></p>
-                <p>A comprehensive analysis of information-theoretic bounds in multi-dimensional broadcast systems, with implications for future network architecture design.</p>
-            </div>
-        </section>
+                <!-- Concurrency -->
+                <div
+                    class="content-node node-purple"
+                    id="node-concurrency"
+                    style="left: 7180px; top: 4400px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⫘</div>
+                        <div>
+                            <div class="node-title">Concurrency</div>
+                            <div class="node-category">Parallel Systems</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Actor models, structured concurrency, and communicating
+                        sequential processes. Type-safe parallel execution.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Actors</span>
+                        <span class="tag">CSP</span>
+                        <span class="tag">Async</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-hero">Hub</div>
+                        <div class="port purple" data-target="node-ffi">
+                            FFI
+                        </div>
+                        <div class="port yellow" data-target="node-tooling">
+                            Tooling
+                        </div>
+                        <div class="port green" data-target="node-memory">
+                            Memory
+                        </div>
+                    </div>
+                </div>
 
-        <div class="transmission-line"></div>
+                <!-- Formal Semantics -->
+                <div
+                    class="content-node"
+                    id="node-semantics"
+                    style="left: 1580px; top: 1600px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">λ</div>
+                        <div>
+                            <div class="node-title">Formal Semantics</div>
+                            <div class="node-category">Foundations</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Operational, denotational, and axiomatic semantics.
+                        Formal methods for language specification.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Operational</span>
+                        <span class="tag">Denotational</span>
+                        <span class="tag">Proofs</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-patterns">
+                            Patterns
+                        </div>
+                        <div
+                            class="port orange"
+                            data-target="node-verification"
+                        >
+                            Verification
+                        </div>
+                    </div>
+                </div>
 
-        <section id="contact">
-            <h2 style="color: var(--amber); font-size: 2rem; margin-bottom: 2rem;">
-                <span class="signal-indicator"></span>Establish Contact
-            </h2>
-            <div class="research-card">
-                <h3>Transmission Form</h3>
-                <p>Ready to discuss your next project? Our team is available for consultations, technical assessments, and partnership discussions.</p>
-                <form class="contact-form" action="https://formspree.io/f/myzkbppo" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Transmission</button>
-                </form>
-            </div>
-        </section>
-    </main>
+                <!-- Verification -->
+                <div
+                    class="content-node node-orange"
+                    id="node-verification"
+                    style="left: 7780px; top: 1600px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">✓</div>
+                        <div>
+                            <div class="node-title">Verification</div>
+                            <div class="node-category">Correctness</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        SMT-based verification, model checking, and proof
+                        assistants. Integrating formal verification into
+                        practical languages.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">SMT</span>
+                        <span class="tag">Model Check</span>
+                        <span class="tag">Proofs</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port orange" data-target="node-types">
+                            Types
+                        </div>
+                        <div class="port" data-target="node-semantics">
+                            Semantics
+                        </div>
+                    </div>
+                </div>
 
-    <footer>
-        <div class="transmission-line"></div>
-        <p>&copy; <span id="currentYear"></span> WrandTel Research & Development Laboratory</p>
-        <p>https://wrand.cc | Advancing the frontiers of telespatial communication</p>
-        <p class="wavelength" style="margin-top: 1rem;">~ ~ ~ END TRANSMISSION ~ ~ ~</p>
-    </footer>
-    
-    <div style="background: #000; padding: 2em 0 1em;">
-        <div style="margin: 0 auto; width: 728px;">
-            <iframe
-                src="https://ampersandboxdesign.com/advertisements/leaderboard-watermark.html"
-                width="728"
-                height="90"
-                frameborder="0"
-                scrolling="no"
-                style="border:none; overflow:hidden;"
-                title="WaterMark Branding Design Agency Advertisement"
-            >
-            </iframe>
-            <div style="text-align: right; color: #ccc; font-size: 0.75em;">
-                ^ADVERTISEMENT
+                <!-- Syntax Design -->
+                <div
+                    class="content-node node-pink"
+                    id="node-syntax"
+                    style="left: 1180px; top: 3800px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⟨⟩</div>
+                        <div>
+                            <div class="node-title">Syntax Design</div>
+                            <div class="node-category">Language Surface</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Ergonomic syntax patterns, DSL embedding techniques, and
+                        macro systems. Balancing expressiveness with
+                        readability.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Macros</span>
+                        <span class="tag">DSLs</span>
+                        <span class="tag">Hygiene</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-patterns">
+                            Patterns
+                        </div>
+                        <div class="port pink" data-target="node-stdlib">
+                            Stdlib
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compiler Architecture -->
+                <div
+                    class="content-node node-yellow"
+                    id="node-compiler"
+                    style="left: 8180px; top: 3800px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⊕</div>
+                        <div>
+                            <div class="node-title">Compiler Architecture</div>
+                            <div class="node-category">Implementation</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Multi-pass compilation strategies, intermediate
+                        representations, and optimization pipelines.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">IR</span>
+                        <span class="tag">Passes</span>
+                        <span class="tag">Incremental</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port orange" data-target="node-types">
+                            Types
+                        </div>
+                        <div class="port yellow" data-target="node-tooling">
+                            Tooling
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Runtime Systems -->
+                <div
+                    class="content-node node-green"
+                    id="node-runtime"
+                    style="left: 1280px; top: 5900px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⟳</div>
+                        <div>
+                            <div class="node-title">Runtime Systems</div>
+                            <div class="node-category">Execution</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Virtual machine design, JIT compilation, and runtime
+                        introspection. Interpretation vs compilation.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">VM</span>
+                        <span class="tag">JIT</span>
+                        <span class="tag">Reflection</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port green" data-target="node-memory">
+                            Memory
+                        </div>
+                        <div class="port purple" data-target="node-ffi">
+                            FFI
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FFI & Interop -->
+                <div
+                    class="content-node node-purple"
+                    id="node-ffi"
+                    style="left: 7780px; top: 5900px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⇆</div>
+                        <div>
+                            <div class="node-title">FFI & Interop</div>
+                            <div class="node-category">Integration</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Foreign function interfaces, cross-language calling
+                        conventions, and safe bindings generation.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Bindings</span>
+                        <span class="tag">C ABI</span>
+                        <span class="tag">WASM</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port purple" data-target="node-concurrency">
+                            Concurrency
+                        </div>
+                        <div class="port green" data-target="node-runtime">
+                            Runtime
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Library -->
+                <div
+                    class="content-node node-pink"
+                    id="node-stdlib"
+                    style="left: 3480px; top: 5500px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">📦</div>
+                        <div>
+                            <div class="node-title">Standard Library</div>
+                            <div class="node-category">Core Modules</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Minimal core libraries, batteries-included philosophies,
+                        and modular stdlib design.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Core</span>
+                        <span class="tag">Prelude</span>
+                        <span class="tag">Ecosystem</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port green" data-target="node-memory">
+                            Memory
+                        </div>
+                        <div class="port pink" data-target="node-syntax">
+                            Syntax
+                        </div>
+                        <div class="port" data-target="node-meta">Meta</div>
+                    </div>
+                </div>
+
+                <!-- Developer Tooling -->
+                <div
+                    class="content-node node-yellow"
+                    id="node-tooling"
+                    style="left: 5880px; top: 5500px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">⚙</div>
+                        <div>
+                            <div class="node-title">Developer Tooling</div>
+                            <div class="node-category">DX Research</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Language servers, formatters, linters, and debuggers.
+                        First-class tooling as a design consideration.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">LSP</span>
+                        <span class="tag">REPL</span>
+                        <span class="tag">Debug</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port purple" data-target="node-concurrency">
+                            Concurrency
+                        </div>
+                        <div class="port yellow" data-target="node-compiler">
+                            Compiler
+                        </div>
+                        <div class="port" data-target="node-meta">Meta</div>
+                    </div>
+                </div>
+
+                <!-- Meta-Programming -->
+                <div
+                    class="content-node"
+                    id="node-meta"
+                    style="left: 4680px; top: 4800px"
+                >
+                    <div class="node-header">
+                        <div class="node-icon">∞</div>
+                        <div>
+                            <div class="node-title">Meta-Programming</div>
+                            <div class="node-category">Self-Reference</div>
+                        </div>
+                    </div>
+                    <div class="node-content">
+                        Compile-time computation, staged programming, and
+                        reflective towers. Languages that write themselves.
+                    </div>
+                    <div class="node-tags">
+                        <span class="tag">Staging</span>
+                        <span class="tag">Reflection</span>
+                        <span class="tag">Towers</span>
+                    </div>
+                    <div class="node-ports">
+                        <div class="port" data-target="node-hero">Hub</div>
+                        <div class="port pink" data-target="node-stdlib">
+                            Stdlib
+                        </div>
+                        <div class="port yellow" data-target="node-tooling">
+                            Tooling
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <br />
-    </div>
-    
-    <script>
-        // Set current year dynamically
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
-</body>
+
+        <!-- UI Overlay -->
+        <div class="ui-overlay">
+            <header class="header">
+                <div class="logo">WRANDTEL <span>R&D</span></div>
+            </header>
+
+            <div class="help-text">
+                <kbd>Drag</kbd> pan · <kbd>Scroll</kbd> zoom · Click
+                <kbd>ports</kbd> to navigate
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" id="zoom-in" title="Zoom In">
+                    +
+                </button>
+                <button class="control-btn" id="zoom-out" title="Zoom Out">
+                    −
+                </button>
+                <button class="control-btn" id="reset" title="Reset View">
+                    ⌂
+                </button>
+            </div>
+
+            <div class="zoom-level" id="zoom-level">100%</div>
+
+            <div class="minimap" id="minimap">
+                <div class="minimap-content">
+                    <div
+                        class="minimap-dot"
+                        style="left: 50%; top: 42%"
+                        title="Hub"
+                    ></div>
+                    <div
+                        class="minimap-dot"
+                        style="left: 28%; top: 30%"
+                        title="Patterns"
+                    ></div>
+                    <div
+                        class="minimap-dot orange"
+                        style="left: 72%; top: 30%"
+                        title="Types"
+                    ></div>
+                    <div
+                        class="minimap-dot green"
+                        style="left: 24%; top: 55%"
+                        title="Memory"
+                    ></div>
+                    <div
+                        class="minimap-dot purple"
+                        style="left: 76%; top: 55%"
+                        title="Concurrency"
+                    ></div>
+                    <div
+                        class="minimap-dot"
+                        style="left: 18%; top: 20%"
+                        title="Semantics"
+                    ></div>
+                    <div
+                        class="minimap-dot orange"
+                        style="left: 82%; top: 20%"
+                        title="Verification"
+                    ></div>
+                    <div
+                        class="minimap-dot pink"
+                        style="left: 14%; top: 48%"
+                        title="Syntax"
+                    ></div>
+                    <div
+                        class="minimap-dot yellow"
+                        style="left: 86%; top: 48%"
+                        title="Compiler"
+                    ></div>
+                    <div
+                        class="minimap-dot green"
+                        style="left: 15%; top: 74%"
+                        title="Runtime"
+                    ></div>
+                    <div
+                        class="minimap-dot purple"
+                        style="left: 82%; top: 74%"
+                        title="FFI"
+                    ></div>
+                    <div
+                        class="minimap-dot pink"
+                        style="left: 38%; top: 69%"
+                        title="Stdlib"
+                    ></div>
+                    <div
+                        class="minimap-dot yellow"
+                        style="left: 62%; top: 69%"
+                        title="Tooling"
+                    ></div>
+                    <div
+                        class="minimap-dot"
+                        style="left: 50%; top: 60%"
+                        title="Meta"
+                    ></div>
+                    <div class="minimap-viewport" id="minimap-viewport"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-indicator" id="nav-indicator">Navigating...</div>
+
+        <script>
+            const scene = document.getElementById("scene");
+            const container = document.getElementById("canvas-container");
+            const navIndicator = document.getElementById("nav-indicator");
+
+            const pipeLayer = document.getElementById("pipe-layer");
+
+            const DEFAULT_FOCUS_NODE_ID = "node-hero";
+            const DEFAULT_FOCUS_ZOOM = 1.1;
+
+            const pz = panzoom(scene, {
+                maxZoom: 2.5,
+                minZoom: 0.2,
+                // Important: do NOT set `transformOrigin` here.
+                // Leaving it unset makes wheel zoom anchor to the pointer position.
+                smoothScroll: true,
+            });
+
+            function getViewportAnchor() {
+                const containerRect = container.getBoundingClientRect();
+
+                const headerEl = document.querySelector(".header");
+                const headerBottom = headerEl
+                    ? headerEl.getBoundingClientRect().bottom
+                    : 0;
+
+                // Use the visible screen height (below the header) and take 50% of that.
+                const centerXScreen = window.innerWidth * 0.5;
+                const centerYScreen =
+                    headerBottom + (window.innerHeight - headerBottom) * 0.5;
+
+                return {
+                    anchorX: centerXScreen - containerRect.left,
+                    anchorY: centerYScreen - containerRect.top,
+                };
+            }
+
+            function focusOnNode(nodeId, scale, smooth = false) {
+                const node = document.getElementById(nodeId);
+                if (!node) return;
+
+                const nodeLeft = parseFloat(node.style.left);
+                const nodeTop = parseFloat(node.style.top);
+                const nodeWidth = node.offsetWidth;
+                const nodeHeight = node.offsetHeight;
+
+                const { anchorX, anchorY } = getViewportAnchor();
+
+                const targetX = -(nodeLeft + nodeWidth / 2) * scale + anchorX;
+                const targetY = -(nodeTop + nodeHeight / 2) * scale + anchorY;
+
+                if (smooth) {
+                    pz.smoothZoomAbs(anchorX, anchorY, scale);
+                    pz.smoothMoveTo(targetX, targetY);
+                } else {
+                    pz.zoomAbs(anchorX, anchorY, scale);
+                    pz.moveTo(targetX, targetY);
+                }
+            }
+
+            function getNodeBox(node) {
+                const left = parseFloat(node.style.left);
+                const top = parseFloat(node.style.top);
+                const width = node.offsetWidth;
+                const height = node.offsetHeight;
+
+                const cx = left + width / 2;
+                const cy = top + height / 2;
+
+                return {
+                    left,
+                    top,
+                    width,
+                    height,
+                    cx,
+                    cy,
+                    halfW: width / 2,
+                    halfH: height / 2,
+                };
+            }
+
+            function rectEdgePoint(box, towardX, towardY) {
+                const dx = towardX - box.cx;
+                const dy = towardY - box.cy;
+
+                if (dx === 0 && dy === 0) {
+                    return { x: box.cx, y: box.cy };
+                }
+
+                const tx = dx === 0 ? Infinity : box.halfW / Math.abs(dx);
+                const ty = dy === 0 ? Infinity : box.halfH / Math.abs(dy);
+                const t = Math.min(tx, ty);
+
+                return { x: box.cx + dx * t, y: box.cy + dy * t };
+            }
+
+            function stableHash(str) {
+                // FNV-1a 32-bit
+                let h = 2166136261;
+                for (let i = 0; i < str.length; i++) {
+                    h ^= str.charCodeAt(i);
+                    h = Math.imul(h, 16777619);
+                }
+                return h >>> 0;
+            }
+
+            function stableDelaySeconds(key, maxAbsSeconds = 4) {
+                const h = stableHash(key);
+                const t = (h % 1000) / 1000; // 0..0.999
+                const v = -(t * maxAbsSeconds); // negative for "already in progress"
+                return Number.isFinite(v) ? v : 0;
+            }
+
+            function connectionDOrtho(a, b) {
+                // Curved (cubic-bezier) connection between points.
+                // Kept the function name to minimize call-site changes.
+                const dx = b.x - a.x;
+                const dy = b.y - a.y;
+
+                const primaryHorizontal = Math.abs(dx) >= Math.abs(dy);
+
+                const sx = dx === 0 ? 1 : dx > 0 ? 1 : -1;
+                const sy = dy === 0 ? 1 : dy > 0 ? 1 : -1;
+
+                const f = (n) => (Number.isFinite(n) ? n.toFixed(1) : "0.0");
+
+                const maxBend = 240;
+                const bendBase = primaryHorizontal
+                    ? Math.abs(dx)
+                    : Math.abs(dy);
+                const bend = Math.min(maxBend, Math.max(60, bendBase * 0.45));
+
+                // Add a small perpendicular component so the curve reads as "curved"
+                // even when one axis is dominant.
+                const cross = primaryHorizontal ? dy : dx;
+                const crossAmt = Math.min(120, Math.abs(cross) * 0.25);
+
+                const c1 = primaryHorizontal
+                    ? { x: a.x + sx * bend, y: a.y + sy * crossAmt }
+                    : { x: a.x + sx * crossAmt, y: a.y + sy * bend };
+
+                const c2 = primaryHorizontal
+                    ? { x: b.x - sx * bend, y: b.y - sy * crossAmt }
+                    : { x: b.x - sx * crossAmt, y: b.y - sy * bend };
+
+                return `M${f(a.x)} ${f(a.y)} C${f(c1.x)} ${f(c1.y)} ${f(
+                    c2.x,
+                )} ${f(c2.y)} ${f(b.x)} ${f(b.y)}`;
+            }
+
+            function clearSvgChildren(svg) {
+                while (svg.firstChild) svg.removeChild(svg.firstChild);
+            }
+
+            function buildPipes() {
+                if (!pipeLayer) return;
+
+                const ports = Array.from(
+                    document.querySelectorAll(".port[data-target]"),
+                );
+
+                // Reset any previous per-port overrides so rebuilds don't leave stale colors.
+                ports.forEach((p) => {
+                    p.style.removeProperty("--port-dot");
+                    p.style.removeProperty("--port-glow");
+                });
+
+                // Collect unique (undirected) edges so we don't draw duplicates
+                // when both nodes link to each other.
+                const edges = new Map();
+
+                ports.forEach((port) => {
+                    const sourceNode = port.closest(".content-node");
+                    const targetId = port.dataset.target;
+                    const targetNode = targetId
+                        ? document.getElementById(targetId)
+                        : null;
+
+                    if (!sourceNode || !targetNode) return;
+
+                    const sourceId = sourceNode.id;
+                    if (!sourceId || !targetId || sourceId === targetId) return;
+
+                    const color = [
+                        "orange",
+                        "green",
+                        "purple",
+                        "pink",
+                        "yellow",
+                    ].find((c) => port.classList.contains(c));
+
+                    const a = sourceId < targetId ? sourceId : targetId;
+                    const b = sourceId < targetId ? targetId : sourceId;
+                    const pairKey = `${a}<->${b}`;
+
+                    const entry = edges.get(pairKey) || {
+                        a,
+                        b,
+                        colors: new Set(),
+                    };
+
+                    if (color) entry.colors.add(color);
+                    edges.set(pairKey, entry);
+                });
+
+                const PALETTE = ["orange", "green", "purple", "pink", "yellow"];
+                const edgeColorByPairKey = new Map();
+
+                // Degree map for stable, more-successful greedy coloring.
+                const degree = new Map();
+                edges.forEach((edge) => {
+                    degree.set(edge.a, (degree.get(edge.a) || 0) + 1);
+                    degree.set(edge.b, (degree.get(edge.b) || 0) + 1);
+                });
+
+                // Track which colors are already used by each node.
+                const usedByNode = new Map();
+                const usedSet = (nodeId) => {
+                    if (!usedByNode.has(nodeId))
+                        usedByNode.set(nodeId, new Set());
+                    return usedByNode.get(nodeId);
+                };
+
+                const generateUniqueColor = (seed, usedA, usedB) => {
+                    // Generate a deterministic HSL color not yet used at either endpoint.
+                    // Use comma syntax for broader CSS compatibility.
+                    for (let i = 0; i < 48; i++) {
+                        const hue = stableHash(`${seed}:${i}`) % 360;
+                        const c = `hsl(${hue}, 80%, 60%)`;
+                        if (!usedA.has(c) && !usedB.has(c)) return c;
+                    }
+                    // Worst-case fallback (should be extremely rare).
+                    return `hsl(${stableHash(seed) % 360}, 80%, 60%)`;
+                };
+
+                const pickEdgeColor = (edge, pairKey) => {
+                    const usedA = usedSet(edge.a);
+                    const usedB = usedSet(edge.b);
+
+                    const preferred = PALETTE.filter((c) => edge.colors.has(c));
+                    const candidates =
+                        preferred.length > 0
+                            ? [
+                                  ...preferred,
+                                  ...PALETTE.filter((c) => !edge.colors.has(c)),
+                              ]
+                            : [...PALETTE];
+
+                    let chosen = null;
+                    for (const c of candidates) {
+                        if (!usedA.has(c) && !usedB.has(c)) {
+                            chosen = c;
+                            break;
+                        }
+                    }
+
+                    // If the palette can't satisfy uniqueness for this node pair (rare unless very high degree),
+                    // generate a unique deterministic color so we still never repeat a color on the same node.
+                    if (!chosen) {
+                        chosen = generateUniqueColor(pairKey, usedA, usedB);
+                    }
+
+                    usedA.add(chosen);
+                    usedB.add(chosen);
+
+                    return chosen;
+                };
+
+                clearSvgChildren(pipeLayer);
+
+                // Deterministic greedy coloring order: higher-degree edges first, then pairKey.
+                const edgeList = Array.from(edges.entries()).sort(
+                    ([k1, e1], [k2, e2]) => {
+                        const p1 = Math.max(
+                            degree.get(e1.a) || 0,
+                            degree.get(e1.b) || 0,
+                        );
+                        const p2 = Math.max(
+                            degree.get(e2.a) || 0,
+                            degree.get(e2.b) || 0,
+                        );
+                        if (p1 !== p2) return p2 - p1;
+                        return k1 < k2 ? -1 : k1 > k2 ? 1 : 0;
+                    },
+                );
+
+                edgeList.forEach(([pairKey, edge]) => {
+                    const nodeA = document.getElementById(edge.a);
+                    const nodeB = document.getElementById(edge.b);
+                    if (!nodeA || !nodeB) return;
+
+                    const color = pickEdgeColor(edge, pairKey);
+                    const isPaletteColor = PALETTE.includes(color);
+
+                    // Save the actual assigned edge color so we can sync port dots to match the pipe.
+                    edgeColorByPairKey.set(pairKey, color);
+
+                    const boxA = getNodeBox(nodeA);
+                    const boxB = getNodeBox(nodeB);
+
+                    const start = rectEdgePoint(boxA, boxB.cx, boxB.cy);
+                    const end = rectEdgePoint(boxB, boxA.cx, boxA.cy);
+
+                    const d = connectionDOrtho(start, end);
+                    const delay = stableDelaySeconds(
+                        `${pairKey}:${color || "default"}`,
+                    );
+
+                    const outer = document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "path",
+                    );
+                    outer.setAttribute(
+                        "class",
+                        isPaletteColor ? `pipe pipe-${color}` : "pipe",
+                    );
+                    outer.setAttribute("d", d);
+                    if (!isPaletteColor) {
+                        outer.style.stroke = color;
+                        outer.style.filter = `drop-shadow(0 0 4px ${color})`;
+                    }
+
+                    const inner = document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "path",
+                    );
+                    inner.setAttribute("class", "pipe-inner");
+                    inner.setAttribute("d", d);
+
+                    const flow = document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "path",
+                    );
+                    flow.setAttribute(
+                        "class",
+                        isPaletteColor
+                            ? `pipe-flow flow-${color}`
+                            : "pipe-flow",
+                    );
+                    flow.setAttribute("d", d);
+                    if (!isPaletteColor) flow.style.stroke = color;
+                    flow.style.animationDelay = `${delay.toFixed(2)}s`;
+
+                    pipeLayer.appendChild(outer);
+                    pipeLayer.appendChild(inner);
+                    pipeLayer.appendChild(flow);
+                });
+
+                // Sync each port's dot to the actual assigned pipe color for that connection.
+                const portVarsForColor = (c) => {
+                    switch (c) {
+                        case "orange":
+                            return {
+                                dot: "var(--accent-orange)",
+                                glow: "rgba(255, 107, 53, 0.6)",
+                            };
+                        case "green":
+                            return {
+                                dot: "var(--accent-green)",
+                                glow: "rgba(63, 185, 80, 0.6)",
+                            };
+                        case "purple":
+                            return {
+                                dot: "var(--accent-purple)",
+                                glow: "rgba(163, 113, 247, 0.6)",
+                            };
+                        case "pink":
+                            return {
+                                dot: "var(--accent-pink)",
+                                glow: "rgba(247, 120, 186, 0.6)",
+                            };
+                        case "yellow":
+                            return {
+                                dot: "var(--accent-yellow)",
+                                glow: "rgba(212, 167, 44, 0.6)",
+                            };
+                        default:
+                            // Generated/overflow HSL colors (or any CSS color string)
+                            return { dot: c, glow: c };
+                    }
+                };
+
+                ports.forEach((port) => {
+                    const sourceNode = port.closest(".content-node");
+                    const targetId = port.dataset.target;
+                    if (!sourceNode || !targetId) return;
+
+                    const sourceId = sourceNode.id;
+                    if (!sourceId || sourceId === targetId) return;
+
+                    const a = sourceId < targetId ? sourceId : targetId;
+                    const b = sourceId < targetId ? targetId : sourceId;
+                    const pairKey = `${a}<->${b}`;
+
+                    const assigned = edgeColorByPairKey.get(pairKey);
+                    if (!assigned) return;
+
+                    const vars = portVarsForColor(assigned);
+                    port.style.setProperty("--port-dot", vars.dot);
+                    port.style.setProperty("--port-glow", vars.glow);
+                });
+
+                pipeLayer.style.opacity = "1";
+            }
+
+            let pipesRaf = 0;
+            function scheduleBuildPipes() {
+                if (pipesRaf) cancelAnimationFrame(pipesRaf);
+                pipesRaf = requestAnimationFrame(() => {
+                    pipesRaf = 0;
+                    buildPipes();
+                });
+            }
+
+            window.addEventListener("resize", scheduleBuildPipes);
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(scheduleBuildPipes);
+            }
+
+            // Navigate to a node
+            function navigateToNode(nodeId) {
+                const node = document.getElementById(nodeId);
+                if (!node) return;
+
+                const nodeRect = node.getBoundingClientRect();
+                const nodeLeft = parseFloat(node.style.left);
+                const nodeTop = parseFloat(node.style.top);
+                const nodeWidth = node.offsetWidth;
+                const nodeHeight = node.offsetHeight;
+
+                const transform = pz.getTransform();
+                const { anchorX, anchorY } = getViewportAnchor();
+
+                // Calculate target position to center the node at the screen midpoint
+                const targetX =
+                    -(nodeLeft + nodeWidth / 2) * transform.scale + anchorX;
+                const targetY =
+                    -(nodeTop + nodeHeight / 2) * transform.scale + anchorY;
+
+                // Show navigation indicator
+                navIndicator.classList.add("show");
+                setTimeout(() => navIndicator.classList.remove("show"), 800);
+
+                // Highlight target node
+                document
+                    .querySelectorAll(".content-node")
+                    .forEach((n) => n.classList.remove("highlight"));
+                node.classList.add("highlight");
+                setTimeout(() => node.classList.remove("highlight"), 2000);
+
+                // Smooth pan to node
+                pz.smoothMoveTo(targetX, targetY);
+            }
+
+            // Port click handlers
+            document.querySelectorAll(".port").forEach((port) => {
+                port.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const target = port.dataset.target;
+                    if (target) {
+                        navigateToNode(target);
+                    }
+                });
+            });
+
+            // Zoom controls
+            document.getElementById("zoom-in").addEventListener("click", () => {
+                const { anchorX, anchorY } = getViewportAnchor();
+
+                pz.smoothZoom(anchorX, anchorY, 1.4);
+                scheduleBuildPipes();
+            });
+
+            document
+                .getElementById("zoom-out")
+                .addEventListener("click", () => {
+                    const { anchorX, anchorY } = getViewportAnchor();
+
+                    pz.smoothZoom(anchorX, anchorY, 0.6);
+                    scheduleBuildPipes();
+                });
+
+            document.getElementById("reset").addEventListener("click", () => {
+                focusOnNode(DEFAULT_FOCUS_NODE_ID, DEFAULT_FOCUS_ZOOM, true);
+                scheduleBuildPipes();
+            });
+
+            // Zoom level display
+            const zoomLevel = document.getElementById("zoom-level");
+            pz.on("zoom", (e) => {
+                const scale = e.getTransform().scale;
+                zoomLevel.textContent = Math.round(scale * 100) + "%";
+            });
+
+            // Minimap
+            const minimapViewport = document.getElementById("minimap-viewport");
+            const minimap = document.getElementById("minimap");
+            const sceneWidth = 10000;
+            const sceneHeight = 8000;
+
+            function updateMinimap() {
+                const transform = pz.getTransform();
+                const containerWidth = container.clientWidth;
+                const containerHeight = container.clientHeight;
+                const minimapWidth = minimap.clientWidth;
+                const minimapHeight = minimap.clientHeight;
+
+                const viewX =
+                    (-transform.x / transform.scale / sceneWidth) *
+                    minimapWidth;
+                const viewY =
+                    (-transform.y / transform.scale / sceneHeight) *
+                    minimapHeight;
+                const viewW =
+                    (containerWidth / transform.scale / sceneWidth) *
+                    minimapWidth;
+                const viewH =
+                    (containerHeight / transform.scale / sceneHeight) *
+                    minimapHeight;
+
+                minimapViewport.style.left = Math.max(0, viewX) + "px";
+                minimapViewport.style.top = Math.max(0, viewY) + "px";
+                minimapViewport.style.width =
+                    Math.min(viewW, minimapWidth - viewX) + "px";
+                minimapViewport.style.height =
+                    Math.min(viewH, minimapHeight - viewY) + "px";
+            }
+
+            pz.on("transform", updateMinimap);
+            updateMinimap();
+
+            // Click minimap to navigate
+            minimap.addEventListener("click", (e) => {
+                const rect = minimap.getBoundingClientRect();
+                const clickX = (e.clientX - rect.left) / rect.width;
+                const clickY = (e.clientY - rect.top) / rect.height;
+
+                const transform = pz.getTransform();
+                const containerWidth = container.clientWidth;
+                const containerHeight = container.clientHeight;
+
+                const targetX =
+                    -(
+                        clickX * sceneWidth -
+                        containerWidth / transform.scale / 2
+                    ) * transform.scale;
+                const targetY =
+                    -(
+                        clickY * sceneHeight -
+                        containerHeight / transform.scale / 2
+                    ) * transform.scale;
+
+                pz.smoothMoveTo(targetX, targetY);
+            });
+
+            let initAttempts = 0;
+            function initView() {
+                const node = document.getElementById(DEFAULT_FOCUS_NODE_ID);
+
+                // If layout isn't ready yet (common on first paint), retry a few frames
+                // so the Hub centers in the true middle instead of snapping to the top.
+                if (
+                    !node ||
+                    container.clientWidth === 0 ||
+                    container.clientHeight === 0 ||
+                    node.offsetWidth === 0 ||
+                    node.offsetHeight === 0
+                ) {
+                    if (initAttempts++ < 20) {
+                        requestAnimationFrame(initView);
+                    }
+                    return;
+                }
+
+                focusOnNode(DEFAULT_FOCUS_NODE_ID, DEFAULT_FOCUS_ZOOM, false);
+                scheduleBuildPipes();
+                updateMinimap();
+                zoomLevel.textContent =
+                    Math.round(pz.getTransform().scale * 100) + "%";
+            }
+
+            // Initialize ASAP (next animation frame) so the first rendered frame is focused.
+            // Then re-run once DOM is ready / fully loaded to account for late layout changes.
+            requestAnimationFrame(initView);
+            document.addEventListener("DOMContentLoaded", initView, {
+                once: true,
+            });
+            window.addEventListener("load", initView, { once: true });
+        </script>
+    </body>
 </html>
